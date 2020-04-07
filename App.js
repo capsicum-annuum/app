@@ -1,10 +1,17 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StatusBar } from 'react-native'
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native'
+
+import { Router } from 'app-routes'
+
+const App = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
-      <Text>Hello, Capsicum Annuum</Text>
-    </View>
+    <NavigationContainer>
+      <StatusBar barStyle="light-content" />
+      <Router />
+    </NavigationContainer>
   )
 }
+
+export default App
