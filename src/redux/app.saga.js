@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects'
 
-import { LoginSaga } from 'app-redux'
+import { LoginSaga } from './login/login.saga'
 
 function* AppSagas() {
   yield all([fork(LoginSaga)])
