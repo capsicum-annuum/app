@@ -1,4 +1,4 @@
-import { Environments } from 'app-config/constants'
+import { Environments } from './environments.constants'
 
 export class Endpoints {
   static AUTHENTICATION = '/autenticacao'
@@ -9,7 +9,7 @@ export class Endpoints {
 
     return ENV.API_URL
   }
-  
+
   static getAuthorizationUrl() {
     const ENV = Environments.getCurrent()
 

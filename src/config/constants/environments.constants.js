@@ -1,4 +1,4 @@
-import ENV from 'app-config/enviroments'
+import ENV from '../environments'
 
 let CURRENT_ENV = __DEV__ ? ENV.DEV : ENV.PRD
 

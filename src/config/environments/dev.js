@@ -1,4 +1,4 @@
-const url = ''
+const url = 'http://localhost:3333'
 
 const DEV = {
   NAME: 'DEV',
