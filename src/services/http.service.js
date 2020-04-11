@@ -1,10 +1,12 @@
 import * as axios from 'axios'
-import { Endpoints } from '@ca-config/pf/constants'
+import { Endpoints, Authorization } from 'app-config/constants'
 import { StringResolver } from 'app-utils'
+import { LocalStorageService } from 'app-services'
 
 export class HttpService {
   constructor(apiGateway = '') {
     this.stringResolver = new StringResolver()
+    this.localStorageService = new LocalStorageService()
 
     this.apiGateway = apiGateway
     this.httpClient = axios.create({
@@ -25,19 +27,26 @@ export class HttpService {
   }
 
   request(method, url = '', params = null, data = null, headers = {}) {
-    const config = {
-      method,
-      url: this.resolveUrl(url, params),
-      data,
-      headers,
-    }
+    return this.localStorageService
+      .getString(Authorization.ACCESS_TOKEN)
+      .then((token) => {
+        headers.Authorization = token
 
-    return this.httpClient.request(config).then(this.unwrap)
+        const config = {
+          method,
+          url: this.resolveUrl(url, params),
+          data,
+          headers,
+        }
+
+        return this.httpClient.request(config).then(this.unwrap)
+      })
   }
 
   resolveUrl(url, params) {
     const apiUrl = Endpoints.getApiUrl()
     const resolvedUrl = this.stringResolver.resolve(url, params)
+
     return `${apiUrl}${this.apiGateway}${resolvedUrl}`
   }
 
