@@ -1,22 +1,21 @@
-import { call, put, takeEvery, all, race, take } from 'redux-saga/effects'
-import { HttpServices } from 'app-services'
-import { makeRequest } from 'app-redux'
+import { call, put, takeEvery, all } from 'redux-saga/effects'
 
+import { LoginService } from 'app-services'
 import { LoginActions } from './login.action'
 import { LOGIN_ACTIONS } from './login.constant'
 
-const http = new HttpServices()
+const loginService = new LoginService()
 
 function* loginRequest(action) {
   const { username, password } = action
 
-  yield makeRequest({
-    req: http.post,
-    url: '',
-    data: { username, password },
-    onSuccess: (data) => put(LoginActions.loginRequestSuccess(data)),
-    onError: (apiResponse) => put(LoginActions.loginRequestFail(apiResponse)),
-  })
+  try {
+    const response = yield put(loginService.login({ username, password }))
+
+    yield put(LoginActions.loginRequestSuccess(response))
+  } catch (error) {
+    yield put(LoginActions.loginRequestFail(error))
+  }
 }
 
 function* LoginSaga() {
