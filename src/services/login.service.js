@@ -6,7 +6,7 @@ export class LoginService {
   }
 
   login({ username, password }) {
-    const data = { email: username, password }
+    const data = { username, password }
 
     return this.httpService
       .post('/sessions', null, data)
