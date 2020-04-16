@@ -1,17 +1,28 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  touchable: {
-    flexDirection: 'row',
-    width: '90%',
-    textAlign:'center',
-    backgroundColor:'#3EB5C1',
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 50,
+  container: {
+    margin: 15,
+    height: 50,
+    width: '100%'
   },
-  icon: {
+  button: {
+    alignItems: "center",
+    justifyContent: 'center',
+    backgroundColor: '#3EB5C1',
+    borderRadius: 50,
+    height: '100%',
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  text: {
     color: '#FFF',
     fontSize: 18,
   },

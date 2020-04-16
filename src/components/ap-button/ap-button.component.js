@@ -1,27 +1,49 @@
-import React, { useState, useCallback } from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
-
-import { ApIcon } from '../ap-icon/ap-icon.component'
+import React, { useCallback } from 'react'
+import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
 
 import Styles from './ap-button.styles'
 
-export const ApButton = (props) => {
-  const [enable, setEnable] = useState(true)
-  const whenButtonPress = () => setEnable(!enable)
+export const ApButton = props => {
+  const {
+    enabled,
+    light,
+    loading,
+    text,
+    onPress,
+    primaryColor,
+    secondaryColor
+  } = props
+  const opacity = enabled ? 1 : 0.4
+  const buttonColor = enabled && light ? primaryColor : secondaryColor
+  const buttonTextColor = enabled && light ? secondaryColor : primaryColor
 
-  const Loader = useCallback(() => {
-    const iconName = enable ? 'eye' : 'eye-hide'
-
-    return <ApIcon name={iconName} style={Styles.icon} />
-  }, [enable])
+  const Content = useCallback(() => {
+    return loading ?
+      <ActivityIndicator size="large" color={buttonTextColor} /> :
+      <Text style={[Styles.text, { color: buttonTextColor }]}>
+        {text}
+      </Text>
+  }, [props])
 
   return (
-    <TouchableOpacity
-      style={[Styles.touchable]}
-      onPress={whenButtonPress}
-    >
-      {/* <Text style={Styles.icon}>Texto aqui</Text> */}
-      <Loader />
-    </TouchableOpacity>
+    <View style={Styles.container} opacity={opacity}>
+      <TouchableOpacity
+        disabled={!enabled}
+        style={[Styles.button, { backgroundColor: buttonColor }]}
+        onPress={onPress}
+      >
+        <Content />
+      </TouchableOpacity>
+    </View>
   )
+}
+
+ApButton.defaultProps = {
+  light: false,
+  enabled: true,
+  loading: false,
+  text: 'Button',
+  primaryColor: '#FFF',
+  secondaryColor: '#3EB5C1',
+  onPress: () => { }
 }
