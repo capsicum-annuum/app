@@ -16,7 +16,7 @@ const ApToasterPosition = {
   TOP: 1,
 }
 
-const DEFAULT_DURATION = 200000
+const DEFAULT_DURATION = 1800
 const DEFAULT_OFFSET = 40
 const DEFAULT_POSITION = ApToasterPosition.TOP
 const DEFAULT_BACKGROUND_COLOR = '#E24F4F'
