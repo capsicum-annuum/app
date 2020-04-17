@@ -8,6 +8,7 @@ module.exports = {
     'no-undef': 'off',
     'no-param-reassign': 'off',
     'class-methods-use-this': 'off',
-    'react/prop-types': "off",
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 }

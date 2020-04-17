@@ -10,7 +10,8 @@
           "app-utils": ["./src/utils/*"],
           "app-redux": ["./src/redux/*"],
           "app-assets": ["./src/assets/*"],
-          "app-constants": ["./src/config/constants/*"]
+          "app-constants": ["./src/config/constants/*"],
+          "app-context": ["./src/context/*"]
       }
   }
 }
