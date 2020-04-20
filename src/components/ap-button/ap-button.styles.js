@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from 'app-theme'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,11 +10,11 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: 'center',
-    backgroundColor: '#3EB5C1',
+    backgroundColor: colors.color6,
     borderRadius: 50,
     height: '100%',
 
-    shadowColor: "#000",
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   text: {
-    color: '#FFF',
+    color: colors.color1,
     fontSize: 18,
   },
 })
