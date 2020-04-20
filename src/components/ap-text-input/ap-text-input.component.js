@@ -9,8 +9,8 @@ export const ApTextInput = (props) => {
   const {
     value,
     optional,
-    aditional,
-    aditionalCallback,
+    additional,
+    additionalCallback,
     alert,
     alertCallback,
   } = props
@@ -21,7 +21,7 @@ export const ApTextInput = (props) => {
         <Text
           style={[
             Styles.optionalText,
-            aditional ? Styles.optionalLeft : Styles.optionalRight,
+            additional ? Styles.optionalLeft : Styles.optionalRight,
           ]}
         >
           Opcional
@@ -30,19 +30,19 @@ export const ApTextInput = (props) => {
     }
 
     return null
-  }, [optional, value, aditional])
+  }, [optional, value, additional])
 
-  const AditionalIcon = useCallback(() => {
-    if (aditional) {
+  const AdditionalIcon = useCallback(() => {
+    if (additional) {
       return (
-        <TouchableOpacity onPress={aditionalCallback} style={Styles.aditional}>
+        <TouchableOpacity onPress={additionalCallback} style={Styles.additional}>
           <ApIcon name="help-outline" style={Styles.icon} />
         </TouchableOpacity>
       )
     }
 
     return null
-  }, [aditional, aditionalCallback])
+  }, [additional, additionalCallback])
 
   const Alert = useCallback(() => {
     if (alert) {
@@ -65,7 +65,7 @@ export const ApTextInput = (props) => {
       />
 
       <OptionalText />
-      <AditionalIcon />
+      <AdditionalIcon />
       <Alert />
     </View>
   )
