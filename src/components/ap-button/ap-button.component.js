@@ -13,9 +13,9 @@ export const ApButton = props => {
     primaryColor,
     secondaryColor
   } = props
-  const opacity = enabled ? 1 : 0.4
-  const buttonColor = enabled && light ? primaryColor : secondaryColor
-  const buttonTextColor = enabled && light ? secondaryColor : primaryColor
+  const opacity = !enabled || loading ? 0.4 : 1
+  const buttonColor = enabled && light && !loading ? primaryColor : secondaryColor
+  const buttonTextColor = enabled && light && !loading ? secondaryColor : primaryColor
 
   const Content = useCallback(() => {
     return loading ?
@@ -28,7 +28,7 @@ export const ApButton = props => {
   return (
     <View style={Styles.container} opacity={opacity}>
       <TouchableOpacity
-        disabled={!enabled}
+        disabled={!enabled || loading}
         style={[Styles.button, { backgroundColor: buttonColor }]}
         onPress={onPress}
       >
