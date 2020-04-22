@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  registerTextStart: {
+  start: {
     paddingTop: 5,
     fontSize: 16,
     lineHeight: 22,
     color: '#B9E8E6',
   },
-  registerTextEnd: {
+  end: {
     color: '#FFF',
     fontSize: 16,
     fontWeight: 'bold',
