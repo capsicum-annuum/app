@@ -17,7 +17,7 @@ module.exports = function (api) {
             "app-redux": "./src/redux/",
             "app-assets": "./src/assets/",
             "app-context": "./src/context/",
-            "app-validators": "./src/validators"
+            "app-validators": "./src/validators/",
           },
         },
       ],

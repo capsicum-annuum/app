@@ -12,7 +12,7 @@
           "app-assets": ["./src/assets/*"],
           "app-constants": ["./src/config/constants/*"],
           "app-context": ["./src/context/*"],
-          "app-validators": ["./src/validators/*"]
+          "app-validators": ["./src/validators/*"],
       }
   }
 }

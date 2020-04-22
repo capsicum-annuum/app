@@ -5,9 +5,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { LoginActions } from 'app-redux'
 import { useToaster } from 'app-context'
 import { Formik } from 'formik'
-import { loginFormSchema } from 'app-validators'
-
 import { Routes } from 'app-constants'
+import { loginFormSchema } from 'app-validators'
 
 const INITIAL_FORM_VALUES = {
   email: '',
