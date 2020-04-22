@@ -2,11 +2,9 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native'
 import { ApButton } from 'app-components'
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { LoginForm, RegisterText } from './components'
 
 import Styles from './login.style'
-
 import HeaderLogo from '../../assets/images/header-logo.png'
 
 export const LoginScreen = () => {

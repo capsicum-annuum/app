@@ -35,7 +35,10 @@ export const ApTextInput = (props) => {
   const AdditionalIcon = useCallback(() => {
     if (additional) {
       return (
-        <TouchableOpacity onPress={additionalCallback} style={Styles.additional}>
+        <TouchableOpacity
+          onPress={additionalCallback}
+          style={Styles.additional}
+        >
           <ApIcon name="help-outline" style={Styles.icon} />
         </TouchableOpacity>
       )
@@ -47,7 +50,10 @@ export const ApTextInput = (props) => {
   const Alert = useCallback(() => {
     if (alert) {
       return (
-        <TouchableOpacity onPress={alertCallback} style={Styles.alert}>
+        <TouchableOpacity
+          onPress={() => alertCallback(alert)}
+          style={Styles.alert}
+        >
           <ApIcon name="alert-outline" style={Styles.alertIcon} />
         </TouchableOpacity>
       )
