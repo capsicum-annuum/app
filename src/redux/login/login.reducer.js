@@ -15,6 +15,8 @@ function LoginReducer(state = INITIAL_STATE, action) {
       return { ...state, showLoader: false }
     case LOGIN_ACTIONS.LOGIN_FAIL:
       return { ...state, showLoader: false, error: action.error }
+    case LOGIN_ACTIONS.CLEAR:
+      return { ...state, ...INITIAL_STATE }
     default:
       return state
   }
