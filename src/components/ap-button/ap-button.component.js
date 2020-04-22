@@ -3,33 +3,36 @@ import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
 
 import Styles from './ap-button.styles'
 
-export const ApButton = props => {
+export const ApButton = (props) => {
   const {
     enabled,
     light,
     loading,
     text,
+    style,
     onPress,
     primaryColor,
-    secondaryColor
+    secondaryColor,
   } = props
   const opacity = !enabled || loading ? 0.4 : 1
-  const buttonColor = enabled && light && !loading ? primaryColor : secondaryColor
-  const buttonTextColor = enabled && light && !loading ? secondaryColor : primaryColor
+  const buttonColor =
+    enabled && light && !loading ? primaryColor : secondaryColor
+  const buttonTextColor =
+    enabled && light && !loading ? secondaryColor : primaryColor
 
   const Content = useCallback(() => {
-    return loading ?
-      <ActivityIndicator size="large" color={buttonTextColor} /> :
-      <Text style={[Styles.text, { color: buttonTextColor }]}>
-        {text}
-      </Text>
+    return loading ? (
+      <ActivityIndicator size="large" color={buttonTextColor} />
+    ) : (
+      <Text style={[Styles.text, { color: buttonTextColor }]}>{text}</Text>
+    )
   }, [props])
 
   return (
     <View style={Styles.container} opacity={opacity}>
       <TouchableOpacity
         disabled={!enabled || loading}
-        style={[Styles.button, { backgroundColor: buttonColor }]}
+        style={[Styles.button, style, { backgroundColor: buttonColor }]}
         onPress={onPress}
       >
         <Content />
@@ -45,5 +48,5 @@ ApButton.defaultProps = {
   text: 'Button',
   primaryColor: '#FFF',
   secondaryColor: '#3EB5C1',
-  onPress: () => { }
+  onPress: () => {},
 }

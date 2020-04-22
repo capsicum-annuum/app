@@ -17,6 +17,7 @@
     "@use-expo/font": "^2.0.0",
     "axios": "^0.19.2",
     "expo": "~37.0.3",
+    "expo-linear-gradient": "^8.1.0",
     "formik": "^2.1.4",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
