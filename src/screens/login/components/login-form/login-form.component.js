@@ -37,7 +37,7 @@ export const LoginForm = () => {
   }, [success])
 
   const onSubmit = (values) => {
-    dispatch(LoginActions.loingRequest(values))
+    dispatch(LoginActions.loginRequest(values))
   }
 
   return (
