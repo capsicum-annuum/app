@@ -1,5 +1,4 @@
-export { Environments } from './environments.constants'
 export { Endpoints } from './endpoints.constants'
+export { Environments } from './environments.constants'
 export { Authorization } from './authorization.constants'
-export { Routes } from './routes.constants'
 export { Screens } from './screens.constants'
