@@ -3,3 +3,4 @@ export { ApPasswordInput } from './ap-password-input/ap-password-input.component
 export { ApIcon } from './ap-icon/ap-icon.component'
 export { ApButton } from './ap-button/ap-button.component'
 export { ApToaster } from './ap-toaster/ap-toaster.component'
+export { BaseScreen } from './base-screen/base-screen.component'
