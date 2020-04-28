@@ -17,6 +17,7 @@ const BottomScreens = {
 }
 
 const RegisterScreens = {
+  REGISTER_SCREEN: 'RegisterScreen',
   REGISTER_CHOOSE_PROFILE_SCREEN: 'RegisterChooseProfileScreen',
 }
 
