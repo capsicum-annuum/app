@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { LoginActions } from 'app-redux'
 import { useToaster } from 'app-context'
 import { Formik } from 'formik'
-import { Routes } from 'app-constants'
+import { Screens } from 'app-constants'
 import { loginFormSchema } from 'app-validators'
 
 const INITIAL_FORM_VALUES = {
@@ -30,7 +30,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (success) {
-      navigation.navigate(Routes.AUTHENTICATED)
+      navigation.navigate(Screens.MAIN_STACK)
 
       dispatch(LoginActions.clear())
     }

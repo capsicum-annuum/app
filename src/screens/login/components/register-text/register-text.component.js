@@ -3,16 +3,16 @@ import { Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Screens } from 'app-constants'
 
+import Styles from './register-text.style'
+
 const DONT_HAVE_ACCOUNT = 'Não possui conta? '
 const CREATE_HERE = 'Crie aqui'
-
-import Styles from './register-text.style'
 
 export const RegisterText = () => {
   const navigation = useNavigation()
 
   const goToRegister = () => {
-    navigation.navigate(Screens.REGISTER)
+    navigation.navigate(Screens.REGISTER_CHOOSE_PROFILE_SCREEN)
   }
 
   return (
