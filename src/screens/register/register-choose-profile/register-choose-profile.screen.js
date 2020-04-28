@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { ApButton, BaseScreen } from 'app-components'
+import { useNavigation } from '@react-navigation/native'
 import { BottomSheet } from './components'
+import { Screens, Role } from 'app-constants'
 
 import Styles from './register-choose-profile.style'
 
@@ -13,8 +15,14 @@ const chooseProfileImage = require('../../../assets/images/choose-profile.png')
 export const RegisterChooseProfileScreen = () => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false)
 
+  const navigation = useNavigation()
+
   const toggleBottomSheetVisibility = () => {
     setBottomSheetVisible(!bottomSheetVisible)
+  }
+
+  const navigateToRegisterScreen = (role) => {
+    navigation.navigate(Screens.REGISTER_SCREEN, { role })
   }
 
   return (
@@ -26,11 +34,13 @@ export const RegisterChooseProfileScreen = () => {
             text="Voluntário"
             secondaryColor="#FFF"
             primaryColor="#2B727A"
+            onPress={() => navigateToRegisterScreen(Role.VOLUNTARY)}
           />
           <ApButton
             text="Organização"
             secondaryColor="#FFF"
             primaryColor="#2B727A"
+            onPress={() => navigateToRegisterScreen(Role.ORGANIZATION)}
           />
         </View>
         <Image source={chooseProfileImage} style={Styles.chooseProfileImage} />
