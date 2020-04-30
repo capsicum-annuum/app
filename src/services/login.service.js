@@ -1,8 +1,10 @@
-import { HttpService } from 'app-services'
+import { HttpService, LocalStorageService } from 'app-services'
+import { Authorization } from 'app-config/constants'
 
 export class LoginService {
   constructor() {
     this.httpService = new HttpService()
+    this.localStorageService = new LocalStorageService()
   }
 
   login({ username, password }) {
@@ -10,9 +12,10 @@ export class LoginService {
 
     return this.httpService
       .post('/sessions', null, data)
-      .then((response) => {
+      .then(({ token }) => {
         console.log('response', response)
 
+        localStorageService.setString(Authorization.ACCESS_TOKEN, token)
         return response
       })
       .catch((error) => {
