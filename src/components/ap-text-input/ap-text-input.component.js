@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-
 import { ApIcon } from '../ap-icon/ap-icon.component'
 
 import Styles from './ap-text-input.style'
@@ -13,6 +12,7 @@ export const ApTextInput = (props) => {
     additionalCallback,
     alert,
     alertCallback,
+    inputRef,
   } = props
 
   const OptionalText = useCallback(() => {
@@ -65,11 +65,11 @@ export const ApTextInput = (props) => {
   return (
     <View style={Styles.container}>
       <TextInput
+        ref={inputRef}
         style={[Styles.input, !!value && Styles.bold]}
         placeholderTextColor="#FFF"
         {...props}
       />
-
       <OptionalText />
       <AdditionalIcon />
       <Alert />

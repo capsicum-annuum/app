@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: 50,
+    height: 45,
     width: '100%',
     marginBottom: 10,
   },
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
   optionalLeft: {
     position: 'absolute',
     right: 52,
-    top: 17,
+    top: 14,
   },
   optionalRight: {
     position: 'absolute',
     right: 20,
-    top: 17,
+    top: 14,
   },
   aditional: {
     position: 'absolute',
