@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
     color: '#FFF',
     marginBottom: 17,
   },
+  buttonContainer: {
+    width: '100%',
+    height: 120,
+    justifyContent: 'space-around',
+  },
   chooseProfileImage: {
     position: 'absolute',
     bottom: 0,

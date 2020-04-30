@@ -30,18 +30,20 @@ export const RegisterChooseProfileScreen = () => {
       <View style={Styles.container}>
         <View style={Styles.wrapper}>
           <Text style={Styles.headerText}>{CHOOSE_PROFILE}</Text>
-          <ApButton
-            text="Voluntário"
-            secondaryColor="#FFF"
-            primaryColor="#2B727A"
-            onPress={() => navigateToRegisterScreen(Role.VOLUNTARY)}
-          />
-          <ApButton
-            text="Organização"
-            secondaryColor="#FFF"
-            primaryColor="#2B727A"
-            onPress={() => navigateToRegisterScreen(Role.ORGANIZATION)}
-          />
+          <View style={Styles.buttonContainer}>
+            <ApButton
+              text="Voluntário"
+              secondaryColor="#FFF"
+              primaryColor="#2B727A"
+              onPress={() => navigateToRegisterScreen(Role.VOLUNTARY)}
+            />
+            <ApButton
+              text="Organização"
+              secondaryColor="#FFF"
+              primaryColor="#2B727A"
+              onPress={() => navigateToRegisterScreen(Role.ORGANIZATION)}
+            />
+          </View>
         </View>
         <Image source={chooseProfileImage} style={Styles.chooseProfileImage} />
         <TouchableOpacity
