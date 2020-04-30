@@ -1,27 +1,21 @@
-import { StyleSheet, Dimensions } from 'react-native'
-
-const windowWidth = Dimensions.get('window').width
-
-const headerHeight = windowWidth / 1.7
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     paddingHorizontal: 40,
-  },
-  linearGradient: {
-    flex: 1,
+    justifyContent: 'space-around',
   },
   logo: {
+    marginTop: 30,
     marginBottom: 10,
-    height: headerHeight,
-    width: windowWidth,
+    height: 63.5,
+    width: 180,
   },
-  forgetPasswordText: {
+  forgotPasswordText: {
     fontSize: 14,
     lineHeight: 19,
-    marginTop: 13,
     fontWeight: 'bold',
     color: '#FFFFFF',
   },
@@ -32,7 +26,7 @@ const styles = StyleSheet.create({
   },
   orContainer: {
     marginTop: 20,
-    marginBottom: 15,
+    marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -41,6 +35,22 @@ const styles = StyleSheet.create({
     color: '#73D0CB',
     fontSize: 14,
     lineHeight: 19,
+  },
+  bottomContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  registerTextStart: {
+    paddingTop: 5,
+    fontSize: 16,
+    lineHeight: 22,
+    color: '#B9E8E6',
+  },
+  registerTextEnd: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    lineHeight: 22,
   },
 })
 
