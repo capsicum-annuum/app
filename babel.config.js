@@ -16,7 +16,8 @@ module.exports = function (api) {
             "app-utils": "./src/utils/",
             "app-redux": "./src/redux/",
             "app-assets": "./src/assets/",
-            "app-context": "./src/context/"
+            "app-context": "./src/context/",
+            "app-theme": "./src/styles/",
           },
         },
       ],
