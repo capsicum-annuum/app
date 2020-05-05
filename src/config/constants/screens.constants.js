@@ -20,6 +20,7 @@ const RegisterScreens = {
   REGISTER_SCREEN: 'RegisterScreen',
   REGISTER_CHOOSE_PROFILE_SCREEN: 'RegisterChooseProfileScreen',
   REGISTER_COMPLETE_SCREEN: 'RegisterCompleteScreen',
+  REGISTER_INFO_SCREEN: 'RegisterInfoScreen',
 }
 
 const HomeScreens = {

@@ -7,6 +7,7 @@ import {
   RegisterScreen,
   RegisterCompleteScreen,
   LoginScreen,
+  RegisterInfoScreen,
 } from 'app-screens'
 import { Screens } from 'app-constants'
 
@@ -24,6 +25,10 @@ export const AuthStack = () => {
       <Stack.Screen
         name={Screens.REGISTER_COMPLETE_SCREEN}
         component={RegisterCompleteScreen}
+      />
+      <Stack.Screen
+        name={Screens.REGISTER_INFO_SCREEN}
+        component={RegisterInfoScreen}
       />
     </Stack.Navigator>
   )
