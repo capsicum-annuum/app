@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import {
   RegisterChooseProfileScreen,
   RegisterScreen,
+  RegisterCompleteScreen,
   LoginScreen,
 } from 'app-screens'
 import { Screens } from 'app-constants'
@@ -19,6 +20,10 @@ export const AuthStack = () => {
       <Stack.Screen
         name={Screens.REGISTER_CHOOSE_PROFILE_SCREEN}
         component={RegisterChooseProfileScreen}
+      />
+      <Stack.Screen
+        name={Screens.REGISTER_COMPLETE_SCREEN}
+        component={RegisterCompleteScreen}
       />
     </Stack.Navigator>
   )

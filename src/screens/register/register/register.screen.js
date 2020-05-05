@@ -33,6 +33,8 @@ export const RegisterScreen = ({ route, navigation }) => {
 
   const onSubmit = (values) => {
     alert(JSON.stringify(values))
+
+    navigation.navigate(Screens.REGISTER_COMPLETE_SCREEN, { role })
   }
 
   const HasAccount = useCallback(() => {
