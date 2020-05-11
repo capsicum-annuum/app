@@ -1,5 +1,7 @@
 const ptBr = {
-  hello: 'Olá',
+  register: {
+    write_about_you: 'Escreva sobre você',
+  },
 }
 
 export { ptBr }
