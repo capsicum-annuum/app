@@ -1,8 +1,11 @@
 import React, { useCallback } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { colors } from 'app-theme'
 import { ApIcon } from '../ap-icon/ap-icon.component'
 
 import Styles from './ap-text-input.style'
+
+const SECONDARY = 'secondary'
 
 export const ApTextInput = (props) => {
   const {
@@ -13,7 +16,16 @@ export const ApTextInput = (props) => {
     alert,
     alertCallback,
     inputRef,
+    colorType,
+    containerStyle,
+    inputStyle,
   } = props
+
+  const isSecondary = colorType === SECONDARY
+  const borderColor = isSecondary ? colors.color8 : colors.color1
+  const textColor = isSecondary ? colors.gray2 : colors.color1
+  const placeholderTextColor = isSecondary ? colors.color9 : colors.color1
+  const optionalTextColor = isSecondary ? colors.gray1 : colors.color3
 
   const OptionalText = useCallback(() => {
     if (optional && !value) {
@@ -21,6 +33,7 @@ export const ApTextInput = (props) => {
         <Text
           style={[
             Styles.optionalText,
+            { color: optionalTextColor },
             additional ? Styles.optionalLeft : Styles.optionalRight,
           ]}
         >
@@ -63,11 +76,16 @@ export const ApTextInput = (props) => {
   }, [alert, alertCallback])
 
   return (
-    <View style={Styles.container}>
+    <View style={[Styles.container, containerStyle]}>
       <TextInput
         ref={inputRef}
-        style={[Styles.input, !!value && Styles.bold]}
-        placeholderTextColor="#FFF"
+        style={[
+          Styles.input,
+          !!value && Styles.bold,
+          inputStyle,
+          { color: textColor, borderColor },
+        ]}
+        placeholderTextColor={placeholderTextColor}
         {...props}
       />
       <OptionalText />

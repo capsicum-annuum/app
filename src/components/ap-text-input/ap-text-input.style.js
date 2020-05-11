@@ -9,13 +9,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderColor: '#FFF',
     borderRadius: 50,
     borderWidth: 1,
     paddingHorizontal: 16,
     fontSize: 16,
+    color: 'red',
     lineHeight: 22,
-    color: '#FFF',
   },
   bold: {
     fontWeight: 'bold',
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   alertIcon: {
     color: '#FFF',
     fontSize: 24,
-  }
+  },
 })
 
 export default styles
