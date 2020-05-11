@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
-import { SelectTouchable } from 'app-components'
+import { View, ScrollView } from 'react-native'
+import { ApCheckBox } from 'app-components'
 
 import Styles from './causes-step.style'
 
@@ -41,9 +41,9 @@ export const CausesStep = () => {
           const selected = causesSelected.includes(cause)
 
           return (
-            <SelectTouchable
+            <ApCheckBox
               onPress={selectCause}
-              title={cause}
+              label={cause}
               selected={selected}
             />
           )
@@ -53,8 +53,9 @@ export const CausesStep = () => {
   }
 
   return (
-    <View style={Styles.container}>
+    <ScrollView style={Styles.container}>
       <CausesItems />
-    </View>
+      <View style={Styles.bottomArea} />
+    </ScrollView>
   )
 }
