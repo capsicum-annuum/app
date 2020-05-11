@@ -1,10 +1,10 @@
 module.exports = function (api) {
-  api.cache(true);
+  api.cache(true)
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
-        "module-resolver",
+        'module-resolver',
         {
           alias: {
             "app-components": "./src/components/",
@@ -18,9 +18,11 @@ module.exports = function (api) {
             "app-assets": "./src/assets/",
             "app-context": "./src/context/",
             "app-validators": "./src/validators/",
+            'app-theme': './src/styles/',
+            'app-locales': './src/config/locales/',
           },
         },
       ],
     ],
-  };
-};
+  }
+}

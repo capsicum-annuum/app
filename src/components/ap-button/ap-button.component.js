@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
+import { colors } from 'app-theme'
 
 import Styles from './ap-button.styles'
 
@@ -46,7 +47,7 @@ ApButton.defaultProps = {
   enabled: true,
   loading: false,
   text: 'Button',
-  primaryColor: '#FFF',
-  secondaryColor: '#3EB5C1',
-  onPress: () => {},
+  primaryColor: colors.color1,
+  secondaryColor: colors.color6,
+  onPress: () => { }
 }

@@ -13,6 +13,8 @@
           "app-constants": ["./src/config/constants/*"],
           "app-context": ["./src/context/*"],
           "app-validators": ["./src/validators/*"],
+          "app-theme": ["./src/styles/*"],
+          "app-locales": ["./src/config/locales/*"]
       }
   }
 }
