@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
-import { SelectTouchable } from 'app-components'
+import { View, ScrollView } from 'react-native'
+import { ApCheckBox } from 'app-components'
 
 import Styles from './skills-steps.style'
 
@@ -43,9 +43,9 @@ export const SkillsStep = () => {
           const selected = skillsSelected.includes(skill)
 
           return (
-            <SelectTouchable
+            <ApCheckBox
               onPress={selectSkill}
-              title={skill}
+              label={skill}
               selected={selected}
             />
           )
@@ -55,8 +55,9 @@ export const SkillsStep = () => {
   }
 
   return (
-    <View style={Styles.container}>
+    <ScrollView style={Styles.container}>
       <SkillSelector />
-    </View>
+      <View style={Styles.bottomArea} />
+    </ScrollView>
   )
 }
