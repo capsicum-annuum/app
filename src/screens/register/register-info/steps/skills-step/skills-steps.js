@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
+import { SelectTouchable } from 'app-components'
 
 import Styles from './skills-steps.style'
 
@@ -41,20 +42,12 @@ export const SkillsStep = () => {
         {skills.map((skill) => {
           const selected = skillsSelected.includes(skill)
 
-          const touchableStyle = selected
-            ? Styles.touchableSelected
-            : Styles.touchableUnselected
-          const textStyle = selected
-            ? Styles.selectedText
-            : Styles.unselectedText
-
           return (
-            <TouchableOpacity
-              onPress={() => selectSkill(skill, selected)}
-              style={touchableStyle}
-            >
-              <Text style={textStyle}>{skill}</Text>
-            </TouchableOpacity>
+            <SelectTouchable
+              onPress={selectSkill}
+              title={skill}
+              selected={selected}
+            />
           )
         })}
       </>
