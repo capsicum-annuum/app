@@ -8,6 +8,8 @@ const colors = {
   color7: '#4AAECB',
   color8: '#428189',
   color9: '#5D969D',
+  color10: '#2B727A',
+  color11: '#73D0CB',
 
   gray1: '#A6A6A6',
   gray2: '#595959',
