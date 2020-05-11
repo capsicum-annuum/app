@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { general, colors } from 'app-theme'
+import { strings } from 'app-locales'
 
 export const LoginScreen = () => {
   return (
@@ -10,7 +11,7 @@ export const LoginScreen = () => {
         colors={[colors.color5, colors.color7]}
         style={general.gradient}
       />
-      <Text>Login Screen</Text>
+      <Text>{strings('hello')}</Text>
     </View>
   )
 }

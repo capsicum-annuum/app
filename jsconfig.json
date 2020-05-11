@@ -13,6 +13,7 @@
         "app-constants": ["./src/config/constants/*"],
         "app-context": ["./src/context/*"],
         "app-theme": ["./src/styles/*"],
+        "app-locales": ["./src/config/locales/*"]
       }
   }
 }
