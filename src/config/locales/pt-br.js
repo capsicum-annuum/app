@@ -1,12 +1,12 @@
 const ptBr = {
   weekdays: {
-    sunday: 'domingo',
-    monday: 'segunda-feira',
-    tuesday: 'terça-feira',
-    wednesday: 'quarta-feira',
-    thursday: 'quinta-feira',
-    friday: 'sexta-feira',
-    saturday: 'sábado',
+    sunday: 'Domingo',
+    monday: 'Segunda-feira',
+    tuesday: 'Terça-feira',
+    wednesday: 'Quarta-feira',
+    thursday: 'Quinta-feira',
+    friday: 'Sexta-feira',
+    saturday: 'Sábado',
   },
   register: {
     write_about_you: 'Escreva sobre você',
