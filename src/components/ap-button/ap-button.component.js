@@ -1,50 +1,57 @@
 import React, { useCallback } from 'react'
 import { View, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
-import { colors } from 'app-theme'
+import { ApIcon } from 'app-components'
 
 import Styles from './ap-button.styles'
 
-export const ApButton = props => {
-  const {
-    enabled,
-    light,
-    loading,
-    text,
-    onPress,
-    primaryColor,
-    secondaryColor
-  } = props
-  const opacity = !enabled || loading ? 0.4 : 1
-  const buttonColor = enabled && light && !loading ? primaryColor : secondaryColor
-  const buttonTextColor = enabled && light && !loading ? secondaryColor : primaryColor
+export const ApButtonTypes = {
+  DEFAULT: 'defaultStyle',
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+}
+
+export const ApButtonSizes = {
+  LARGE: 'large',
+  SMALL: 'small',
+}
+
+export const ApButton = ({
+  bold,
+  label,
+  onPress,
+  loading,
+  disabled,
+  iconName,
+  containerStyle,
+  size = ApButtonSizes.LARGE,
+  type = ApButtonTypes.DEFAULT,
+}) => {
+  const colors = Styles[type]
+  const { button, text, icon } = Styles[size]
+  const buttonColors = disabled ? colors.disabledButton : colors.button
+  const textColors = disabled ? colors.disabledText : colors.text
+  const iconColors = disabled ? colors.disabledIcon : colors.icon
 
   const Content = useCallback(() => {
-    return loading ?
-      <ActivityIndicator size="large" color={buttonTextColor} /> :
-      <Text style={[Styles.text, { color: buttonTextColor }]}>
-        {text}
+    return loading ? (
+      <ActivityIndicator size={size} color={textColors.color} />
+    ) : (
+      <Text style={[text, textColors, bold && Styles.styles.bold]}>
+        {label}
       </Text>
-  }, [props])
+    )
+  }, [loading])
 
   return (
-    <View style={Styles.container} opacity={opacity}>
+    <View style={[Styles.styles.container, containerStyle]}>
+      {iconName && <ApIcon name={iconName} style={[icon, iconColors]} />}
       <TouchableOpacity
-        disabled={!enabled || loading}
-        style={[Styles.button, { backgroundColor: buttonColor }]}
+        disabled={disabled || loading}
+        style={[button, buttonColors]}
         onPress={onPress}
       >
         <Content />
       </TouchableOpacity>
     </View>
   )
-}
-
-ApButton.defaultProps = {
-  light: false,
-  enabled: true,
-  loading: false,
-  text: 'Button',
-  primaryColor: colors.color1,
-  secondaryColor: colors.color6,
-  onPress: () => { }
 }
