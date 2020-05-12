@@ -4,11 +4,11 @@ import { ApIcon } from 'app-components'
 
 import Styles from './ap-check-box.style'
 
-export const ApCheckBox = ({ selected, label, onPress }) => {
+export const ApCheckBox = ({ selected, label, onPress, style, value }) => {
   return (
     <TouchableOpacity
-      onPress={() => onPress(label, selected)}
-      style={Styles.container}
+      onPress={() => onPress(value, selected)}
+      style={[Styles.container, style]}
     >
       <View style={[Styles.box, selected && Styles.selectedBox]}>
         {selected && <ApIcon style={Styles.icon} name="check" />}
