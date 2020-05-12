@@ -123,17 +123,18 @@ const primary = StyleSheet.create({
 
 const secondary = StyleSheet.create({
   text: {
-    ...shadowStyle,
     color: colors.color10,
   },
   button: {
+    ...shadowStyle,
     backgroundColor: colors.color1,
   },
   disabledText: {
     color: colors.color10,
   },
   disabledButton: {
-    backgroundColor: colors.gray5,
+    backgroundColor: colors.color1,
+    opacity: 0.5,
   },
   icon: {
     color: colors.color10,
