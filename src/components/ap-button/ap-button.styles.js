@@ -85,7 +85,7 @@ const defaultStyle = StyleSheet.create({
     color: colors.gray4,
   },
   disabledButton: {
-    backgroundColor: colors.color13,
+    backgroundColor: colors.color10,
   },
   icon: {
     color: colors.color1,
@@ -109,9 +109,10 @@ const primary = StyleSheet.create({
     color: colors.color8,
   },
   disabledButton: {
-    backgroundColor: colors.gray5,
+    backgroundColor: colors.gray3,
     borderColor: colors.color8,
     borderWidth: 1,
+    opacity: 0.7,
   },
   icon: {
     color: colors.color8,
@@ -123,23 +124,24 @@ const primary = StyleSheet.create({
 
 const secondary = StyleSheet.create({
   text: {
-    ...shadowStyle,
-    color: colors.color13,
+    color: colors.color10,
   },
   button: {
+    ...shadowStyle,
     backgroundColor: colors.color1,
   },
   disabledText: {
-    color: colors.color13,
+    color: colors.color10,
   },
   disabledButton: {
-    backgroundColor: colors.gray5,
+    backgroundColor: colors.color1,
+    opacity: 0.5,
   },
   icon: {
-    color: colors.color13,
+    color: colors.color10,
   },
   disabledIcon: {
-    color: colors.color13,
+    color: colors.color10,
   },
 })
 
