@@ -10,5 +10,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-else-return': 'off',
   },
 }
