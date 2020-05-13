@@ -13,7 +13,7 @@ export const ApTextInputTypes = {
 export const ApTextInput = (props) => {
   const {
     value,
-    iconName = 'eye-hide',
+    iconName,
     iconCallback = () => {},
     alert,
     alertCallback = () => {},
