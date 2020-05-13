@@ -1,72 +1,88 @@
 import React, { useCallback } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-
-import { ApIcon } from '../ap-icon/ap-icon.component'
+import { View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { ApIcon } from 'app-components'
+import { strings } from 'app-locales'
 
 import Styles from './ap-text-input.style'
+
+export const ApTextInputTypes = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+}
 
 export const ApTextInput = (props) => {
   const {
     value,
-    optional,
-    additional,
-    additionalCallback,
+    iconName = 'eye-hide',
+    iconCallback = () => {},
     alert,
-    alertCallback,
+    alertCallback = () => {},
+    optional,
+    multiline,
+    disabled,
+    borderWidth = 1,
+    type = ApTextInputTypes.PRIMARY,
   } = props
+  const paddingRight = iconName ? 50 : 16
+  const styles = Styles[type]
+  const inputStyle = disabled ? styles.disabledInput : styles.input
+  const optionalStyle = disabled ? styles.optionalText : styles.optionalText
+  const additionalStyle = disabled
+    ? styles.disabledAdditionalIcon
+    : styles.additionalIcon
+  const textStyle =
+    type === ApTextInputTypes.PRIMARY ? Styles.styles.bold : Styles.styles.gray
 
-  const OptionalText = useCallback(() => {
-    if (optional && !value) {
-      return (
-        <Text
-          style={[
-            Styles.optionalText,
-            additional ? Styles.optionalLeft : Styles.optionalRight,
-          ]}
-        >
-          Opcional
-        </Text>
-      )
-    }
+  const Optional = useCallback(() => {
+    const optionalPosition =
+      iconName && !multiline
+        ? Styles.styles.optionalLeft
+        : Styles.styles.optionalRight
 
-    return null
-  }, [optional, value, additional])
+    return (
+      <Text style={[optionalStyle, optionalPosition]}>
+        {strings('ap_text_input.optional')}
+      </Text>
+    )
+  }, [optional, value, iconName])
 
-  const AdditionalIcon = useCallback(() => {
-    if (additional) {
-      return (
-        <TouchableOpacity onPress={additionalCallback} style={Styles.additional}>
-          <ApIcon name="help-outline" style={Styles.icon} />
-        </TouchableOpacity>
-      )
-    }
-
-    return null
-  }, [additional, additionalCallback])
+  const Additional = useCallback(() => {
+    return (
+      <TouchableOpacity
+        disabled={disabled}
+        onPress={iconCallback}
+        style={Styles.styles.additional}
+      >
+        <ApIcon name={iconName} style={additionalStyle} />
+      </TouchableOpacity>
+    )
+  }, [iconName, iconCallback])
 
   const Alert = useCallback(() => {
-    if (alert) {
-      return (
-        <TouchableOpacity onPress={alertCallback} style={Styles.alert}>
-          <ApIcon name="alert-outline" style={Styles.alertIcon} />
-        </TouchableOpacity>
-      )
-    }
+    const alertIcon =
+      type === ApTextInputTypes.PRIMARY ? 'alert-outline' : 'alert'
 
-    return null
+    return (
+      <TouchableOpacity
+        onPress={() => alertCallback(alert)}
+        style={styles.alert}
+      >
+        <ApIcon name={alertIcon} style={styles.alertIcon} />
+      </TouchableOpacity>
+    )
   }, [alert, alertCallback])
 
   return (
-    <View style={Styles.container}>
+    <View style={Styles.styles.container}>
       <TextInput
-        style={[Styles.input, !!value && Styles.bold]}
-        placeholderTextColor="#FFF"
+        editable={!disabled}
+        style={[inputStyle, value && textStyle, { borderWidth, paddingRight }]}
+        placeholderTextColor={inputStyle.color}
         {...props}
       />
-
-      <OptionalText />
-      <AdditionalIcon />
-      <Alert />
+      {optional && !value && <Optional />}
+      {iconName && <Additional />}
+      {alert && <Alert />}
     </View>
   )
 }

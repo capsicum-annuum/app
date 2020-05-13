@@ -1,62 +1,135 @@
 import { StyleSheet } from 'react-native'
+import { colors } from 'app-theme'
+
+const defaultInput = {
+  flex: 1,
+  borderRadius: 50,
+  borderWidth: 1,
+  paddingLeft: 16,
+  fontSize: 16,
+}
+
+const defaultOptional = {
+  position: 'absolute',
+  fontStyle: 'italic',
+  fontSize: 12,
+  top: 15,
+}
+
+const defaultAdditionalIcon = {
+  fontSize: 18,
+}
+
+const defaultAlert = {
+  position: 'absolute',
+  right: -30,
+  top: 12,
+}
+
+const defaultAlertIcon = {
+  fontSize: 24,
+}
 
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: 50,
     width: '100%',
+    height: 45,
     marginBottom: 10,
   },
-  input: {
-    flex: 1,
-    borderColor: '#FFF',
-    borderRadius: 50,
-    borderWidth: 1,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    lineHeight: 22,
-    color: '#FFF',
+  optionalLeft: {
+    right: 55,
   },
   bold: {
     fontWeight: 'bold',
   },
-  optionalText: {
-    position: 'absolute',
-    fontSize: 12,
-    lineHeight: 16,
-    fontStyle: 'italic',
-    color: '#B9E8E6',
-  },
-  optionalLeft: {
-    position: 'absolute',
-    right: 52,
-    top: 17,
+  gray: {
+    color: colors.gray8,
   },
   optionalRight: {
-    position: 'absolute',
-    right: 20,
-    top: 17,
+    right: 19,
   },
-  aditional: {
+  additional: {
     position: 'absolute',
-    right: 20,
-    top: 12,
+    right: 19,
+    bottom: 13,
   },
-  icon: {
-    color: '#FFF',
-    fontSize: 25,
+})
+
+const primary = StyleSheet.create({
+  input: {
+    ...defaultInput,
+    color: colors.color1,
+    borderColor: colors.color1,
+  },
+  optionalText: {
+    ...defaultOptional,
+    color: colors.color3,
+  },
+  additionalIcon: {
+    ...defaultAdditionalIcon,
+    color: colors.color1,
+  },
+  disabledInput: {
+    ...defaultInput,
+    color: colors.color3,
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: 'rgba(185, 232, 230, 0.5)',
+  },
+  disabledOptionalText: {
+    ...defaultOptional,
+    color: colors.color3,
+  },
+  disabledAdditionalIcon: {
+    ...defaultAdditionalIcon,
+    color: colors.color3,
   },
   alert: {
-    position: 'absolute',
-    right: -30,
-    top: 12,
-    backgroundColor: '#E24F4F',
+    ...defaultAlert,
+    backgroundColor: colors.warning,
     borderRadius: 20,
   },
   alertIcon: {
-    color: '#FFF',
-    fontSize: 24,
-  }
+    ...defaultAlertIcon,
+    color: colors.color1,
+  },
 })
 
-export default styles
+const secondary = StyleSheet.create({
+  input: {
+    ...defaultInput,
+    color: colors.color8,
+    borderColor: colors.color14,
+  },
+  optionalText: {
+    ...defaultOptional,
+    color: colors.gray6,
+  },
+  additionalIcon: {
+    ...defaultAdditionalIcon,
+    color: colors.color14,
+  },
+  disabledInput: {
+    ...defaultInput,
+    color: colors.gray6,
+    borderColor: 'rgba(66, 129, 137, 0.5)',
+    backgroundColor: 'rgba(166, 166, 166, 0.5)',
+  },
+  disabledOptionalText: {
+    ...defaultOptional,
+    color: colors.gray6,
+  },
+  disabledAdditionalIcon: {
+    ...defaultAdditionalIcon,
+    color: colors.color15,
+  },
+  alert: {
+    ...defaultAlert,
+  },
+  alertIcon: {
+    ...defaultAlertIcon,
+    color: colors.warning,
+  },
+})
+
+export default { styles, primary, secondary }
