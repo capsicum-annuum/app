@@ -18,6 +18,9 @@ const ptBr = {
     morning_and_night: 'manhã e noite',
     afternoon_and_night: 'tarde e noite',
   },
+  ap_text_input: {
+    optional: 'Opcional',
+  },
 }
 
 export { ptBr }

@@ -109,9 +109,10 @@ const primary = StyleSheet.create({
     color: colors.color8,
   },
   disabledButton: {
-    backgroundColor: colors.gray5,
+    backgroundColor: colors.gray3,
     borderColor: colors.color8,
     borderWidth: 1,
+    opacity: 0.7,
   },
   icon: {
     color: colors.color8,

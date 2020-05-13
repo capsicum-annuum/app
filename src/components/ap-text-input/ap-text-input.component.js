@@ -1,96 +1,88 @@
 import React, { useCallback } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import { colors } from 'app-theme'
-import { ApIcon } from '../ap-icon/ap-icon.component'
+import { View, TextInput, Text, TouchableOpacity } from 'react-native'
+import { ApIcon } from 'app-components'
+import { strings } from 'app-locales'
 
 import Styles from './ap-text-input.style'
 
-const SECONDARY = 'secondary'
+export const ApTextInputTypes = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+}
 
 export const ApTextInput = (props) => {
   const {
     value,
-    optional,
-    additional,
-    additionalCallback,
+    iconName,
+    iconCallback = () => {},
     alert,
-    alertCallback,
-    inputRef,
-    colorType,
-    containerStyle,
-    inputStyle,
+    alertCallback = () => {},
+    optional,
+    multiline,
+    disabled,
+    borderWidth = 1,
+    type = ApTextInputTypes.PRIMARY,
   } = props
+  const paddingRight = iconName ? 50 : 16
+  const styles = Styles[type]
+  const inputStyle = disabled ? styles.disabledInput : styles.input
+  const optionalStyle = disabled ? styles.optionalText : styles.optionalText
+  const additionalStyle = disabled
+    ? styles.disabledAdditionalIcon
+    : styles.additionalIcon
+  const textStyle =
+    type === ApTextInputTypes.PRIMARY ? Styles.styles.bold : Styles.styles.gray
 
-  const isSecondary = colorType === SECONDARY
-  const borderColor = isSecondary ? colors.color8 : colors.color1
-  const textColor = isSecondary ? colors.gray2 : colors.color1
-  const placeholderTextColor = isSecondary ? colors.color9 : colors.color1
-  const optionalTextColor = isSecondary ? colors.gray1 : colors.color3
+  const Optional = useCallback(() => {
+    const optionalPosition =
+      iconName && !multiline
+        ? Styles.styles.optionalLeft
+        : Styles.styles.optionalRight
 
-  const OptionalText = useCallback(() => {
-    if (optional && !value) {
-      return (
-        <Text
-          style={[
-            Styles.optionalText,
-            { color: optionalTextColor },
-            additional ? Styles.optionalLeft : Styles.optionalRight,
-          ]}
-        >
-          Opcional
-        </Text>
-      )
-    }
+    return (
+      <Text style={[optionalStyle, optionalPosition]}>
+        {strings('ap_text_input.optional')}
+      </Text>
+    )
+  }, [optional, value, iconName])
 
-    return null
-  }, [optional, value, additional])
-
-  const AdditionalIcon = useCallback(() => {
-    if (additional) {
-      return (
-        <TouchableOpacity
-          onPress={additionalCallback}
-          style={Styles.additional}
-        >
-          <ApIcon name="help-outline" style={Styles.icon} />
-        </TouchableOpacity>
-      )
-    }
-
-    return null
-  }, [additional, additionalCallback])
+  const Additional = useCallback(() => {
+    return (
+      <TouchableOpacity
+        disabled={disabled}
+        onPress={iconCallback}
+        style={Styles.styles.additional}
+      >
+        <ApIcon name={iconName} style={additionalStyle} />
+      </TouchableOpacity>
+    )
+  }, [iconName, iconCallback])
 
   const Alert = useCallback(() => {
-    if (alert) {
-      return (
-        <TouchableOpacity
-          onPress={() => alertCallback(alert)}
-          style={Styles.alert}
-        >
-          <ApIcon name="alert-outline" style={Styles.alertIcon} />
-        </TouchableOpacity>
-      )
-    }
+    const alertIcon =
+      type === ApTextInputTypes.PRIMARY ? 'alert-outline' : 'alert'
 
-    return null
+    return (
+      <TouchableOpacity
+        onPress={() => alertCallback(alert)}
+        style={styles.alert}
+      >
+        <ApIcon name={alertIcon} style={styles.alertIcon} />
+      </TouchableOpacity>
+    )
   }, [alert, alertCallback])
 
   return (
-    <View style={[Styles.container, containerStyle]}>
+    <View style={Styles.styles.container}>
       <TextInput
-        ref={inputRef}
-        style={[
-          Styles.input,
-          !!value && Styles.bold,
-          inputStyle,
-          { color: textColor, borderColor },
-        ]}
-        placeholderTextColor={placeholderTextColor}
+        editable={!disabled}
+        style={[inputStyle, value && textStyle, { borderWidth, paddingRight }]}
+        placeholderTextColor={inputStyle.color}
         {...props}
       />
-      <OptionalText />
-      <AdditionalIcon />
-      <Alert />
+      {optional && !value && <Optional />}
+      {iconName && <Additional />}
+      {alert && <Alert />}
     </View>
   )
 }
