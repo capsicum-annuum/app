@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
     borderColor: '#428189',
     borderWidth: 1,
   },
+  image: {
+    width: 250,
+    height: 250,
+    borderRadius: 250,
+  },
   icon: {
     color: '#428189',
     fontSize: 16,
