@@ -1,6 +1,11 @@
 import React, { useRef } from 'react'
 import { KeyboardAvoidingView } from 'react-native'
-import { ApTextInput, ApPasswordInput, ApButton } from 'app-components'
+import {
+  ApTextInput,
+  ApPasswordInput,
+  ApButton,
+  ApButtonTypes,
+} from 'app-components'
 import { useSelector } from 'react-redux'
 import { useToaster } from 'app-context'
 import { Formik } from 'formik'
@@ -47,12 +52,11 @@ export const LoginForm = ({ onSubmit }) => {
             alertCallback={queue}
           />
           <ApButton
-            text="Entrar"
+            label="Entrar"
+            type={ApButtonTypes.SECONDARY}
+            disabled={!isValid}
             loading={showLoader}
-            enabled={isValid}
             onPress={handleSubmit}
-            secondaryColor="#FFF"
-            primaryColor="#2B727A"
             style={{ marginTop: 20 }}
           />
         </KeyboardAvoidingView>
