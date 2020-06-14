@@ -53,7 +53,10 @@ export const RegisterInfoScreen = () => {
 
   return (
     <View style={Styles.container}>
-      <RegisterWizard steps={registerStepsData} currentStep={currentStep} />
+      <RegisterWizard
+        steps={registerVoluntarySteps}
+        currentStep={currentStep}
+      />
       <View style={Styles.content}>{renderContent()}</View>
       <BottomSheet />
     </View>

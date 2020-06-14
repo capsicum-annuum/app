@@ -60,7 +60,7 @@ function RegisterReducer(state = INITIAL_STATE, action) {
     case REGISTER_ACTIONS.CHECK_BASE_USER_DATA_SUCCESS:
       return {
         ...state,
-        checkBaseUserDataSucess: data,
+        checkBaseUserDataSuccess: data,
         checkBaseUserDataLoader: false,
       }
     case REGISTER_ACTIONS.CHECK_BASE_USER_DATA_FAIL:

@@ -10,23 +10,36 @@ export class RegisterService {
   }
 
   checkBaseUserData(data) {
+    data.cnpj = data.cnpj || null
+    
     return this.httpService
       .post('/user/validate', null, data)
-      .then((response) => response)
-      .catch((error) => error)
+      .then(() => {
+        return { message: 'Success' }
+      })
+      .catch((error) => {
+        console.log('registerService.checkBaseUserData', error)
+        return error
+      })
   }
 
   fetchSkills() {
     return this.httpService
       .get('/skill')
       .then(({ skills }) => skills)
-      .catch((error) => error)
+      .catch((error) => {
+        console.log('registerService.fetchSkills', error)
+        return error
+      })
   }
 
   fetchCauses() {
     return this.httpService
       .get('/cause')
       .then(({ causes }) => causes)
-      .catch((error) => error)
+      .catch((error) => {
+        console.log('registerService.fetchCauses', error)
+        return error
+      })
   }
 }

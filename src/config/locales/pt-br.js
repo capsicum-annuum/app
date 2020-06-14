@@ -61,6 +61,11 @@ const ptBr = {
     location_title: 'Informe sua localização',
     location_description:
       'Por último, informe seu endereço para que possamos encontrar ações perto de você',
+    lets_go: 'Vamos lá',
+    finish_voluntary_register: 'Que bom ter você aqui!',
+    finish_organization_register: 'Que bom ter a sua\norganização aqui!',
+    to_finish_register:
+      'Para finalizar o seu cadastro, precisamos\nde mais algumas informações.',
   },
   ap_text_input: {
     optional: 'Opcional',

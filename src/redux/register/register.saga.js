@@ -10,21 +10,15 @@ const registerService = new RegisterService()
 function* checkBaseUserData({ data }) {
   const { email, cnpj, phone } = data
 
-  console.log('data', data)
-
   try {
     const response = yield call(registerService.checkBaseUserData, {
-      email,
       cnpj,
+      email,
       phone,
     })
 
-    console.log('response', response)
-
     yield put(RegisterActions.checkBaseUserDataSuccess(response))
   } catch (error) {
-    console.log('error', error)
-
     yield put(RegisterActions.checkBaseUserDataFail(error))
   }
 }
