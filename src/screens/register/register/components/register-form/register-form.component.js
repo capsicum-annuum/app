@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { View } from 'react-native'
-import { ApButton, ApTextInput, ApPasswordInput } from 'app-components'
+import {
+  ApButton,
+  ApButtonTypes,
+  ApTextInput,
+  ApPasswordInput,
+} from 'app-components'
 import { Formik } from 'formik'
 import { registerFormSchema } from 'app-validators'
 import { Role } from 'app-constants'
 import { useToaster } from 'app-context'
+import { useSelector } from 'react-redux'
+import { strings } from 'app-locales'
 
 import Styles from './register-form.style'
 
@@ -20,6 +27,10 @@ const INITIAL_FORM_VALUES = {
 export const RegisterForm = ({ role, onSubmit }) => {
   const [isVoluntary, setIsVoluntary] = useState(true)
 
+  const { checkBaseUserDataLoader } = useSelector(
+    (state) => state.RegisterReducer,
+  )
+
   const emailRef = useRef(null)
   const cnpjRef = useRef(null)
   const phoneRef = useRef(null)
@@ -32,7 +43,9 @@ export const RegisterForm = ({ role, onSubmit }) => {
     setIsVoluntary(Role.VOLUNTARY === role)
   }, [])
 
-  const placeHolderName = isVoluntary ? 'Nome completo' : 'Nome da Organização'
+  const placeHolderName = isVoluntary
+    ? strings('register.full_name')
+    : strings('register.organization_name')
 
   const onSubmitEmailInput = () => {
     return isVoluntary ? phoneRef.current.focus() : cnpjRef.current.focus()
@@ -62,7 +75,7 @@ export const RegisterForm = ({ role, onSubmit }) => {
             returnKeyType="next"
             keyboardType="email-address"
             autoCapitalize="none"
-            placeholder="E-mail"
+            placeholder={strings('register.email')}
             value={values.email}
             alert={touched.email && errors.email}
             alertCallback={queue}
@@ -74,7 +87,7 @@ export const RegisterForm = ({ role, onSubmit }) => {
               inputRef={cnpjRef}
               returnKeyType="next"
               keyboardType="numbers-and-punctuation"
-              placeholder="CNPJ"
+              placeholder={strings('register.cnpj')}
               optional
               value={values.cpnj}
               alert={touched.cpnj && errors.cpnj}
@@ -87,7 +100,7 @@ export const RegisterForm = ({ role, onSubmit }) => {
             inputRef={phoneRef}
             returnKeyType="next"
             keyboardType="numbers-and-punctuation"
-            placeholder="Telefone"
+            placeholder={strings('register.phone')}
             value={values.phone}
             alert={touched.phone && errors.phone}
             alertCallback={queue}
@@ -97,7 +110,7 @@ export const RegisterForm = ({ role, onSubmit }) => {
           <ApPasswordInput
             inputRef={passwordRef}
             returnKeyType="next"
-            placeholder="Senha"
+            placeholder={strings('register.password')}
             value={values.password}
             alert={touched.password && errors.password}
             alertCallback={queue}
@@ -107,7 +120,7 @@ export const RegisterForm = ({ role, onSubmit }) => {
           <ApPasswordInput
             inputRef={passwordConfirmationRef}
             returnKeyType="done"
-            placeholder="Confirmar senha"
+            placeholder={strings('register.password_confirmation')}
             value={values.passwordConfirmation}
             alert={touched.passwordConfirmation && errors.passwordConfirmation}
             alertCallback={queue}
@@ -115,11 +128,11 @@ export const RegisterForm = ({ role, onSubmit }) => {
           />
           <ApButton
             enabled={isValid}
+            loading={checkBaseUserDataLoader}
+            type={ApButtonTypes.SECONDARY}
             onPress={handleSubmit}
-            secondaryColor="#FFF"
-            primaryColor="#2B727A"
-            style={Styles.button}
-            text="Cadastrar"
+            containerStyle={Styles.button}
+            label={strings('register.register')}
           />
         </View>
       )}
