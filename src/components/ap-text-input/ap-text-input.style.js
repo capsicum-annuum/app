@@ -113,7 +113,7 @@ const secondary = StyleSheet.create({
     ...defaultInput,
     color: colors.gray1,
     borderColor: 'rgba(66, 129, 137, 0.5)',
-    backgroundColor: 'rgba(166, 166, 166, 0.5)',
+    backgroundColor: 'rgba(229, 229, 229, 0.7)',
   },
   disabledOptionalText: {
     ...defaultOptional,

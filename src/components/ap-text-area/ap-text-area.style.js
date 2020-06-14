@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
   input: {
     borderRadius: 10,
     paddingTop: 10,
-    fontWeight: 'normal',
   },
 })
 
