@@ -1,55 +1,64 @@
-import React, { useState } from 'react'
-import { View, ScrollView } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, ScrollView, ActivityIndicator } from 'react-native'
 import { ApCheckBox } from 'app-components'
+import { useSelector, useDispatch } from 'react-redux'
+import { RegisterActions } from 'app-redux'
 
 import Styles from './causes-step.style'
 
-// TODO buscar as causas do serviço
-
-const causes = [
-  'Saúde',
-  'Esportes',
-  'Jovens',
-  'Idosos',
-  'Crianças',
-  'Proteção Animal',
-  'Sustentabilidade',
-  'LGBTQ+',
-  'Cidadania',
-  'Combate à Pobreza',
-  'Meio Ambiente',
-  'Educação',
-]
-
 export const CausesStep = () => {
-  const [causesSelected, setCausesSelected] = useState('Saúde')
+  const { causes, causesList, causesLoader } = useSelector(
+    (state) => state.RegisterReducer,
+  )
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (causesList.length === 0) {
+      dispatch(RegisterActions.fetchCausesRequest())
+    }
+  }, [])
 
   const selectCause = (cause, selected) => {
-    const causesList = [...causesSelected]
+    const causesSelected = [...causes]
 
     const newCauses = selected
-      ? causesList.filter((c) => c !== cause)
-      : causesList.concat(cause)
+      ? causesSelected.filter((c) => c !== cause)
+      : causesSelected.concat(cause)
 
-    setCausesSelected(newCauses)
+    dispatch(RegisterActions.updateUserData({ causes: newCauses }))
   }
 
   const CausesItems = () => {
     return (
       <>
-        {causes.map((cause) => {
-          const selected = causesSelected.includes(cause)
+        {causesList.map((cause) => {
+          const selected = causes.includes(cause)
 
           return (
             <ApCheckBox
+              value={cause}
+              key={cause.description}
+              label={cause.description}
               onPress={selectCause}
-              label={cause}
               selected={selected}
             />
           )
         })}
       </>
     )
+  }
+
+  const Loader = () => {
+    return (
+      <View style={Styles.loaderContainer}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
+  }
+
+  if (causesLoader) {
+    return <Loader />
   }
 
   return (
