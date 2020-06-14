@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, StatusBar, Keyboard } from 'react-native'
+import { SafeAreaView, Keyboard } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 
 export const BaseScreen = ({
