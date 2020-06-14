@@ -1,2 +1,5 @@
 export { StringResolver } from './stringResolver.util'
-export { getPeriodText } from './getPeriodText.util'
+export { getDayShiftText } from './getDayShiftText.util'
+export { registerVoluntarySteps } from './registerVoluntarySteps.utils'
+export { Hooks } from './hooks.utils'
+export { availabilityData } from './availabilityData.utils'
