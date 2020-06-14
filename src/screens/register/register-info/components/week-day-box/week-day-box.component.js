@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Animated } from 'react-native'
 import { ApIcon, ApCheckBox } from 'app-components'
-import { getPeriodText } from 'app-utils'
+import { getDayShiftText } from 'app-utils'
+import { Availability } from 'app-constants'
+import { strings } from 'app-locales'
 
 import Styles from './week-day-box.style'
 
-export const WeekDayBox = ({ day, periods, selectPeriod }) => {
+export const WeekDayBox = ({
+  label,
+  dayOfWeekValue,
+  selectDayShift,
+  selectedAvailabilities,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [heightValue] = useState(new Animated.Value(60))
   const [rotateValue] = useState(new Animated.Value(0))
@@ -58,16 +65,22 @@ export const WeekDayBox = ({ day, periods, selectPeriod }) => {
     transform: [{ rotate: interpolateRotation }],
   }
 
-  const select = (value, selected) => {
-    selectPeriod(value, selected, day)
+  const select = (dayShiftValue, selected) => {
+    selectDayShift(dayOfWeekValue, dayShiftValue, selected)
+  }
+
+  const checkSelected = (dayShift) => {
+    return selectedAvailabilities.find((a) => a.dayShift === dayShift)
   }
 
   return (
     <Animated.View style={[Styles.wrapper, { height: heightValue }]}>
       <View style={Styles.container}>
         <View>
-          <Text style={Styles.day}>{day}</Text>
-          <Text style={Styles.periods}>{getPeriodText(periods)}</Text>
+          <Text style={Styles.day}>{label}</Text>
+          <Text style={Styles.periods}>
+            {getDayShiftText(selectedAvailabilities)}
+          </Text>
         </View>
         <TouchableOpacity
           onPress={isOpen ? close : open}
@@ -80,21 +93,21 @@ export const WeekDayBox = ({ day, periods, selectPeriod }) => {
       </View>
       <Animated.View style={[Styles.bottomContainer, { top: positionValue }]}>
         <ApCheckBox
-          label="manhã"
-          value="morning"
-          selected={periods.morning}
+          label={strings('register.morning')}
+          value={Availability.DAY_SHIFT.MORNING}
+          selected={checkSelected(Availability.DAY_SHIFT.MORNING)}
           onPress={select}
         />
         <ApCheckBox
-          label="tarde"
-          value="afternoon"
-          selected={periods.afternoon}
+          label={strings('register.afternoon')}
+          value={Availability.DAY_SHIFT.AFTERNOON}
+          selected={checkSelected(Availability.DAY_SHIFT.AFTERNOON)}
           onPress={select}
         />
         <ApCheckBox
-          label="noite"
-          value="night"
-          selected={periods.night}
+          label={strings('register.night')}
+          value={Availability.DAY_SHIFT.NIGHT}
+          selected={checkSelected(Availability.DAY_SHIFT.NIGHT)}
           onPress={select}
         />
       </Animated.View>

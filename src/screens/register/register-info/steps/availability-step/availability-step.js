@@ -1,63 +1,47 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, ScrollView } from 'react-native'
-import { strings } from 'app-locales'
+import { useSelector, useDispatch } from 'react-redux'
+import { availabilityData } from 'app-utils'
+import { RegisterActions } from 'app-redux'
 import { WeekDayBox } from '../../components'
 
 import Styles from './availability-step.style'
 
-const initialDate = [
-  {
-    day: strings('weekdays.monday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.tuesday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.wednesday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.thursday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.friday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.saturday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-  {
-    day: strings('weekdays.sunday'),
-    periods: { morning: false, afternoon: false, night: false },
-  },
-]
-
 export const AvailabilityStep = () => {
-  const [data, setData] = useState(initialDate)
+  const { availability } = useSelector((state) => state.RegisterReducer)
 
-  const selectPeriod = (period, selected, day) => {
-    const dataList = [...data]
+  const dispatch = useDispatch()
 
-    const newDataList = dataList.map((item) => {
-      if (item.day === day) {
-        item.periods[period] = !selected
-      }
+  const selectDayShift = (dayOfWeek, dayShift, selected) => {
+    const newAvailabilityList = selected
+      ? availability.filter(
+          (a) => a.dayOfWeek !== dayOfWeek || a.dayShift !== dayShift,
+        )
+      : availability.concat({ dayOfWeek, dayShift })
 
-      return item
-    })
-
-    setData(newDataList)
+    dispatch(
+      RegisterActions.updateUserData({ availability: newAvailabilityList }),
+    )
   }
 
   return (
     <ScrollView style={Styles.container}>
-      {data.map(({ day, periods }) => (
-        <WeekDayBox day={day} selectPeriod={selectPeriod} periods={periods} />
-      ))}
+      {availabilityData.map(({ label, value }) => {
+        const availabilityList = [...availability]
+        const selectedAvailabilities = availabilityList.filter(
+          (a) => a.dayOfWeek === value,
+        )
+
+        return (
+          <WeekDayBox
+            key={value}
+            label={label}
+            dayOfWeekValue={value}
+            selectDayShift={selectDayShift}
+            selectedAvailabilities={selectedAvailabilities}
+          />
+        )
+      })}
       <View style={Styles.bottomArea} />
     </ScrollView>
   )
