@@ -13,8 +13,6 @@ export class LoginService {
     return this.httpService
       .post('/sessions', null, data)
       .then(({ token }) => {
-        console.log('response', response)
-
         localStorageService.setString(Authorization.ACCESS_TOKEN, token)
         return response
       })
