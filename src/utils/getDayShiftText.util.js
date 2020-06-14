@@ -1,9 +1,18 @@
 import { strings } from 'app-locales'
+import { Availability } from 'app-constants'
 
 // Sorry about this
 
-export const getPeriodText = (periods) => {
-  const { morning, afternoon, night } = periods
+export const getDayShiftText = (selectedAvailabilities) => {
+  let morning
+  let afternoon
+  let night
+
+  selectedAvailabilities.map(({ dayShift }) => {
+    morning = dayShift === Availability.DAY_SHIFT.MORNING || morning
+    afternoon = dayShift === Availability.DAY_SHIFT.AFTERNOON || afternoon
+    night = dayShift === Availability.DAY_SHIFT.NIGHT || night
+  })
 
   if (morning && !afternoon && !night) {
     return strings('register.morning')
