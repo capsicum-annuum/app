@@ -1,4 +1,4 @@
-const url = ''
+const url = 'https://annuum-api-homolog.herokuapp.com/annuum-api'
 
 const PRD = {
   NAME: 'PRD',

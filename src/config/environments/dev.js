@@ -1,4 +1,4 @@
-const url = 'http://localhost:3333'
+const url = 'https://annuum-api-homolog.herokuapp.com/annuum-api'
 
 const DEV = {
   NAME: 'DEV',
