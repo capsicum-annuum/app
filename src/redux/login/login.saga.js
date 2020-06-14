@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects'
+import { put, takeEvery, all } from 'redux-saga/effects'
 
 import { LoginService } from 'app-services'
 import { LoginActions } from './login.action'
