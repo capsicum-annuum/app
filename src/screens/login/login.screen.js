@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native'
-import { ApButton, BaseScreen } from 'app-components'
+import { ApButton, ApButtonTypes, BaseScreen } from 'app-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { LoginActions } from 'app-redux'
 import { useToaster } from 'app-context'
@@ -79,10 +79,10 @@ export const LoginScreen = ({ navigation }) => {
               <View style={Styles.line} />
             </View>
             <ApButton
-              text="Facebook"
+              type={ApButtonTypes.SECONDARY}
+              iconName="facebook"
+              label="Facebook"
               style={Styles.facebookButton}
-              secondaryColor="#FFF"
-              primaryColor="#2B727A"
             />
           </View>
           <Register />
