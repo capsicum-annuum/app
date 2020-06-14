@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { BaseScreen } from 'app-components'
 import {
   Text,
@@ -6,20 +6,19 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native'
+import { strings } from 'app-locales'
 import { Role, Screens } from 'app-constants'
+import { useSelector, useDispatch } from 'react-redux'
+import { RegisterActions } from 'app-redux'
+import { useToaster } from 'app-context'
 import { RegisterForm } from './components'
 
 import Styles from './register.style'
 
-const VOLUNTARY = 'Voluntário'
-const ORGANIZATION = 'Organização'
-const HAS_ACCOUNT = 'Já possui conta? '
-const ACCESS_HERE = 'Acesse aqui'
-
 const getHeaderText = (role) => {
-  const text = role === Role.VOLUNTARY ? VOLUNTARY : ORGANIZATION
-
-  return `Cadastro de\n${text}`
+  return role === Role.VOLUNTARY
+    ? strings('register.voluntary_register')
+    : strings('register.organization_register')
 }
 
 export const RegisterScreen = ({ route, navigation }) => {
@@ -27,14 +26,40 @@ export const RegisterScreen = ({ route, navigation }) => {
   const { role } = route.params
   const headerText = getHeaderText(role)
 
+  const { queue } = useToaster()
+  const dispatch = useDispatch()
+
+  const { checkBaseUserDataSuccess, checkBaseUserDataError } = useSelector(
+    (state) => state.RegisterReducer,
+  )
+
+  const navigateToRegisterCompleteScreen = () => {
+    navigation.navigate(Screens.REGISTER_COMPLETE_SCREEN, { role })
+  }
+
   const navigateToLoginScreen = () => {
     navigation.navigate(Screens.LOGIN_SCREEN)
   }
 
-  const onSubmit = (values) => {
-    alert(JSON.stringify(values))
+  useEffect(() => {
+    if (checkBaseUserDataSuccess) {
+      dispatch(RegisterActions.clearCheckBaseUserData())
 
-    navigation.navigate(Screens.REGISTER_COMPLETE_SCREEN, { role })
+      navigateToRegisterCompleteScreen()
+    }
+  }, [checkBaseUserDataSuccess])
+
+  useEffect(() => {
+    if (checkBaseUserDataError) {
+      queue('Algo de errado acontenceu')
+
+      dispatch(RegisterActions.clearCheckBaseUserData())
+    }
+  }, checkBaseUserDataError)
+
+  const onSubmit = (values) => {
+    dispatch(RegisterActions.setBaseUserData(values))
+    dispatch(RegisterActions.checkBaseUserDataRequest(values))
   }
 
   const HasAccount = useCallback(() => {
@@ -45,8 +70,10 @@ export const RegisterScreen = ({ route, navigation }) => {
           onPress={navigateToLoginScreen}
         >
           <Text style={Styles.hasAccountText}>
-            {HAS_ACCOUNT}
-            <Text style={Styles.accessHereText}>{ACCESS_HERE}</Text>
+            {strings('register.has_account')}
+            <Text style={Styles.accessHereText}>
+              {strings('register.access_here')}
+            </Text>
           </Text>
         </TouchableOpacity>
       )
