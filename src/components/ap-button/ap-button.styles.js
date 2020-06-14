@@ -82,16 +82,17 @@ const defaultStyle = StyleSheet.create({
     backgroundColor: colors.color6,
   },
   disabledText: {
-    color: colors.gray4,
+    color: colors.color1,
   },
   disabledButton: {
-    backgroundColor: colors.color10,
+    backgroundColor: colors.color6,
+    opacity: 0.5,
   },
   icon: {
     color: colors.color1,
   },
   disabledIcon: {
-    color: colors.gray4,
+    color: colors.color1,
   },
 })
 
