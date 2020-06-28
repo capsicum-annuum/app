@@ -1,5 +1,5 @@
-
 const fonts = {
+    onboarding: 18,
     input: 16,
     regular: 14,
     medium: 12,

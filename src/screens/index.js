@@ -1,3 +1,4 @@
+export { OnboardingScreen } from './onboarding/onboarding.screen'
 export { HomeScreen } from './home/home.screen'
 export { ProfileScreen } from './profile/profile.screen'
 export { LoginScreen } from './login/login.screen'

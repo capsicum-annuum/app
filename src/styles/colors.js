@@ -18,6 +18,7 @@ const colors = {
   gray7: '#E5E5E5',
   gray8: "#595959",
 
+  aqua: '#67F6A5',
   black: '#000',
   facebook: '#3B5599',
   warning: '#E24F4F',
