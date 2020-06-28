@@ -44,6 +44,7 @@ const small = StyleSheet.create({
   },
   text: {
     ...defaultText,
+    color: colors.color1,
     fontSize: 14,
     lineHeight: 19,
   },
