@@ -4,6 +4,6 @@ export { LoginScreen } from './login/login.screen'
 export {
   RegisterChooseProfileScreen,
   RegisterScreen,
-  RegisterCompleteScreen,
+  RegisterContinueScreen,
   RegisterInfoScreen,
 } from './register'

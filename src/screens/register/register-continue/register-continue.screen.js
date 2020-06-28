@@ -4,12 +4,12 @@ import { BaseScreen, ApButton, ApButtonTypes } from 'app-components'
 import { Role, Screens } from 'app-constants'
 import { strings } from 'app-locales'
 
-import Styles from './register-complete.style'
+import Styles from './register-continue.style'
 
 const voluntaryImage = require('../../../assets/images/volunteer.png')
 const organizationImage = require('../../../assets/images/organization.png')
 
-export const RegisterCompleteScreen = ({ route, navigation }) => {
+export const RegisterContinueScreen = ({ route, navigation }) => {
   const { role } = route.params
   const isVoluntary = role === Role.VOLUNTARY
 
@@ -21,7 +21,7 @@ export const RegisterCompleteScreen = ({ route, navigation }) => {
     ? { width: 202, height: 156 }
     : { width: 220, height: 154 }
 
-  const navigateToRegisterPicture = () => {
+  const navigateRegisterInfoScreen = () => {
     navigation.navigate(Screens.REGISTER_INFO_SCREEN, { role })
   }
 
@@ -36,7 +36,7 @@ export const RegisterCompleteScreen = ({ route, navigation }) => {
           label={strings('register.lets_go')}
           buttonStyle={{ marginTop: 45 }}
           type={ApButtonTypes.SECONDARY}
-          onPress={navigateToRegisterPicture}
+          onPress={navigateRegisterInfoScreen}
         />
         <Image
           source={image}
