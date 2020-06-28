@@ -66,6 +66,9 @@ const ptBr = {
     finish_organization_register: 'Que bom ter a sua\norganização aqui!',
     to_finish_register:
       'Para finalizar o seu cadastro, precisamos\nde mais algumas informações.',
+    creating_volunteer_profile: 'Estamos criando seu perfil de\nvoluntário',
+    creating_organization_profile:
+      'Estamos criando o perfil da\nsua organização',
   },
   ap_text_input: {
     optional: 'Opcional',
