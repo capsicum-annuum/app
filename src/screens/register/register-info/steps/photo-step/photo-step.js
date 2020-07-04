@@ -6,6 +6,7 @@ import { useToaster } from 'app-context'
 import { strings } from 'app-locales'
 import { useSelector, useDispatch } from 'react-redux'
 import { RegisterActions } from 'app-redux'
+import { UploadService } from 'app-services'
 import Constants from 'expo-constants'
 
 import Styles from './photo-step.style'
@@ -31,6 +32,14 @@ export const PhotoStep = () => {
     requestCameraRollPermissions()
   }, [])
 
+  useEffect(() => {
+    const uploadService = new UploadService()
+
+    if (photo) {
+      uploadService.uploadImage(photo)
+    }
+  }, [photo])
+
   const pickPhoto = async () => {
     const photoResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -40,11 +49,11 @@ export const PhotoStep = () => {
     })
 
     if (!photoResult.cancelled) {
-      dispatch(RegisterActions.updateUserData({ photo: photoResult.uri }))
+      dispatch(RegisterActions.updateUserData({ photo: photoResult }))
     }
   }
 
-  const displayPhoto = photo ? { uri: photo } : defaultUserPhoto
+  const displayPhoto = photo ? { uri: photo.uri } : defaultUserPhoto
 
   return (
     <View style={Styles.container}>

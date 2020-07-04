@@ -23,8 +23,8 @@ export const SkillsStep = () => {
     const skillsSelected = [...skills]
 
     const newSkills = selected
-      ? skillsSelected.filter((s) => s !== skill)
-      : skillsSelected.concat(skill)
+      ? skillsSelected.filter((s) => s !== skill.id)
+      : skillsSelected.concat(skill.id)
 
     dispatch(RegisterActions.updateUserData({ skills: newSkills }))
   }
@@ -33,7 +33,7 @@ export const SkillsStep = () => {
     return (
       <>
         {skillsList.map((skill) => {
-          const selected = skills.includes(skill)
+          const selected = skills.includes(skill.id)
 
           return (
             <ApCheckBox

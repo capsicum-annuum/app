@@ -23,8 +23,8 @@ export const CausesStep = () => {
     const causesSelected = [...causes]
 
     const newCauses = selected
-      ? causesSelected.filter((c) => c !== cause)
-      : causesSelected.concat(cause)
+      ? causesSelected.filter((c) => c !== cause.id)
+      : causesSelected.concat(cause.id)
 
     dispatch(RegisterActions.updateUserData({ causes: newCauses }))
   }
@@ -33,7 +33,7 @@ export const CausesStep = () => {
     return (
       <>
         {causesList.map((cause) => {
-          const selected = causes.includes(cause)
+          const selected = causes.includes(cause.id)
 
           return (
             <ApCheckBox
@@ -52,7 +52,7 @@ export const CausesStep = () => {
   const Loader = () => {
     return (
       <View style={Styles.loaderContainer}>
-        <ActivityIndicator size='large' />
+        <ActivityIndicator size="large" />
       </View>
     )
   }
