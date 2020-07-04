@@ -1,23 +1,44 @@
 import React, { useState, useCallback } from 'react'
 import { View } from 'react-native'
 import { ApButton, RegisterWizard } from 'app-components'
+import { Screens } from 'app-constants'
 import { registerVoluntarySteps, Hooks } from 'app-utils'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RegisterActions } from 'app-redux'
+import { useToaster } from 'app-context'
+import { ConfirmLeaveModal } from './components'
 
 import Styles from './register-info.style'
 
-export const RegisterInfoScreen = () => {
+export const RegisterInfoScreen = ({ navigation }) => {
+  const { role, registerRequestErrorData } = useSelector(
+    (state) => state.RegisterReducer,
+  )
+
   const [currentStep, setCurrentStep] = useState(registerVoluntarySteps[0])
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
   const { renderContent, validator } = currentStep
   const { useBackButton } = Hooks
+  const { queue } = useToaster()
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if (registerRequestErrorData) {
+      queue(strings('register.error_try_again'))
+
+      dispatch(RegisterActions.clearRegisterRequest)
+    }
+  }, [registerRequestErrorData])
+
+  const toggleModalVisible = () => {
+    setIsModalVisible(!isModalVisible)
+  }
+
   const nextStep = () => {
-    if (currentStepIndex === registerVoluntarySteps.length) {
-      // Finaliza o cadastro
+    if (currentStepIndex + 1 === registerVoluntarySteps.length) {
+      navigation.navigate(Screens.REGISTER_FINISH_SCREEN)
     } else {
       const nextStepIndex = currentStepIndex + 1
 
@@ -33,7 +54,7 @@ export const RegisterInfoScreen = () => {
       setCurrentStepIndex(previousStepIndex)
       setCurrentStep(registerVoluntarySteps[previousStepIndex])
     } else {
-      dispatch(RegisterActions.clearUserData())
+      toggleModalVisible()
     }
 
     return true
@@ -52,13 +73,19 @@ export const RegisterInfoScreen = () => {
   }, [currentStep])
 
   return (
-    <View style={Styles.container}>
-      <RegisterWizard
-        steps={registerVoluntarySteps}
-        currentStep={currentStep}
+    <>
+      <View style={Styles.container}>
+        <RegisterWizard
+          steps={registerVoluntarySteps}
+          currentStep={currentStep}
+        />
+        <View style={Styles.content}>{renderContent()}</View>
+        <BottomSheet />
+      </View>
+      <ConfirmLeaveModal
+        isVisible={isModalVisible}
+        closeCallback={toggleModalVisible}
       />
-      <View style={Styles.content}>{renderContent()}</View>
-      <BottomSheet />
-    </View>
+    </>
   )
 }
