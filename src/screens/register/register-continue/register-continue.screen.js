@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image } from 'react-native'
 import { BaseScreen, ApButton, ApButtonTypes } from 'app-components'
 import { Role, Screens } from 'app-constants'
+import { useSelector } from 'react-redux'
 import { strings } from 'app-locales'
 
 import Styles from './register-continue.style'
@@ -9,8 +10,8 @@ import Styles from './register-continue.style'
 const voluntaryImage = require('../../../assets/images/volunteer.png')
 const organizationImage = require('../../../assets/images/organization.png')
 
-export const RegisterContinueScreen = ({ route, navigation }) => {
-  const { role } = route.params
+export const RegisterContinueScreen = ({ navigation }) => {
+  const { role } = useSelector((state) => state.RegisterReducer)
   const isVoluntary = role === Role.VOLUNTARY
 
   const title = isVoluntary
@@ -22,7 +23,7 @@ export const RegisterContinueScreen = ({ route, navigation }) => {
     : { width: 220, height: 154 }
 
   const navigateRegisterInfoScreen = () => {
-    navigation.navigate(Screens.REGISTER_INFO_SCREEN, { role })
+    navigation.navigate(Screens.REGISTER_INFO_SCREEN)
   }
 
   return (
