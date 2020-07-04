@@ -3,6 +3,7 @@ import { BaseScreen } from 'app-components'
 import {
   Text,
   View,
+  Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native'
@@ -21,9 +22,9 @@ const getHeaderText = (role) => {
     : strings('register.organization_register')
 }
 
-export const RegisterScreen = ({ route, navigation }) => {
+export const RegisterScreen = ({ navigation }) => {
   const [showHasAccount, setShowHasAccount] = useState(true)
-  const { role } = route.params
+  const { role } = useSelector((state) => state.RegisterReducer)
   const headerText = getHeaderText(role)
 
   const { queue } = useToaster()
@@ -33,8 +34,8 @@ export const RegisterScreen = ({ route, navigation }) => {
     (state) => state.RegisterReducer,
   )
 
-  const navigateToRegisterCompleteScreen = () => {
-    navigation.navigate(Screens.REGISTER_COMPLETE_SCREEN, { role })
+  const navigateToRegisterContinueScreen = () => {
+    navigation.navigate(Screens.REGISTER_CONTINUE_SCREEN)
   }
 
   const navigateToLoginScreen = () => {
@@ -45,7 +46,7 @@ export const RegisterScreen = ({ route, navigation }) => {
     if (checkBaseUserDataSuccess) {
       dispatch(RegisterActions.clearCheckBaseUserData())
 
-      navigateToRegisterCompleteScreen()
+      navigateToRegisterContinueScreen()
     }
   }, [checkBaseUserDataSuccess])
 
@@ -58,6 +59,8 @@ export const RegisterScreen = ({ route, navigation }) => {
   }, checkBaseUserDataError)
 
   const onSubmit = (values) => {
+    Keyboard.dismiss()
+
     dispatch(RegisterActions.setBaseUserData(values))
     dispatch(RegisterActions.checkBaseUserDataRequest(values))
   }
