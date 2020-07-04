@@ -31,7 +31,9 @@ export class HttpService {
     return this.localStorageService
       .getString(Authorization.ACCESS_TOKEN)
       .then((token) => {
-        headers.Authorization = token
+        if (token) {
+          headers.Authorization = token
+        }
 
         const config = {
           method,
