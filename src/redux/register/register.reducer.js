@@ -18,18 +18,26 @@ const INITIAL_USER_DATA = {
   skills: [],
   availability: [],
   location: {
-    state: '',
-    city: '',
+    stateName: '',
+    cityName: '',
+    district: '',
     neighborhood: '',
+    federatedUnityAcronym: '',
     latitude: null,
     longitude: null,
   },
   disabledButtons: false,
 }
 
+const INITIAL_REGISTER_REQUEST = {
+  registerRequestErrorData: false,
+  registerRequestSuccessData: false,
+}
+
 const INITIAL_STATE = {
   ...INITIAL_BASE_USER_DATA,
   ...INITIAL_USER_DATA,
+  ...INITIAL_REGISTER_REQUEST,
   currentLocationErrorData: false,
   currentLocationLoader: false,
   causesList: [],
@@ -150,6 +158,28 @@ function RegisterReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         causesDataError: false,
+      }
+    case REGISTER_ACTIONS.REGISTER_REQUEST:
+      return {
+        ...state,
+        registerRequestSuccessData: null,
+        registerRequestErrorData: null,
+      }
+    case REGISTER_ACTIONS.REGISTER_SUCCESS:
+      return {
+        ...state,
+        registerRequestSuccessData: data,
+      }
+    case REGISTER_ACTIONS.REGISTER_ERROR:
+      return {
+        ...state,
+        registerRequestErrorData: error,
+      }
+    case REGISTER_ACTIONS.CLEAR_REGISTER_REQUEST:
+      return {
+        ...state,
+        registerRequestSuccessData: null,
+        registerRequestErrorData: null,
       }
     default:
       return state
