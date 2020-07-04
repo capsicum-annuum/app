@@ -1,4 +1,4 @@
 export const Role = {
-  ORGANIZATION: 'Organization',
-  VOLUNTARY: 'Voluntary',
+  ORGANIZATION: 'organization',
+  VOLUNTARY: 'voluntary',
 }

@@ -131,6 +131,32 @@ const clearCausesError = () => {
   }
 }
 
+const registerRequest = () => {
+  return {
+    type: REGISTER_ACTIONS.REGISTER_REQUEST,
+  }
+}
+
+const registerSuccess = (data) => {
+  return {
+    type: REGISTER_ACTIONS.REGISTER_SUCCESS,
+    data,
+  }
+}
+
+const registerFail = (error) => {
+  return {
+    type: REGISTER_ACTIONS.REGISTER_ERROR,
+    error,
+  }
+}
+
+const clearRegisterRequest = () => {
+  return {
+    type: REGISTER_ACTIONS.CLEAR_REGISTER_REQUEST,
+  }
+}
+
 export const RegisterActions = {
   setBaseUserData,
   clearBaseUserData,
@@ -152,4 +178,8 @@ export const RegisterActions = {
   fetchSkillsSuccess,
   fetchSkillsFail,
   clearSkillsError,
+  registerRequest,
+  registerSuccess,
+  registerFail,
+  clearRegisterRequest,
 }

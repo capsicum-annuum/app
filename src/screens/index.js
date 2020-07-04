@@ -6,4 +6,5 @@ export {
   RegisterScreen,
   RegisterContinueScreen,
   RegisterInfoScreen,
+  RegisterFinishScreen,
 } from './register'

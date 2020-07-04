@@ -1,11 +1,12 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects'
+import { call, put, takeEvery, all, select } from 'redux-saga/effects'
 
-import { LocationService, RegisterService } from 'app-services'
+import { LocationService, RegisterService, LoginService } from 'app-services'
 import { RegisterActions } from './register.action'
 import { REGISTER_ACTIONS } from './register.constant'
 
 const locationService = new LocationService()
 const registerService = new RegisterService()
+const loginService = new LoginService()
 
 function* checkBaseUserData({ data }) {
   const { email, cnpj, phone } = data
@@ -57,6 +58,21 @@ function* fetchCauses() {
   }
 }
 
+function* registerRequest() {
+  const data = yield select((state) => state.RegisterReducer)
+  const { email: username, password } = data
+
+  try {
+    const response = yield call(registerService.registerRequest, data)
+
+    yield call(loginService.login, { username, password })
+
+    yield put(RegisterActions.registerSuccess(response))
+  } catch (error) {
+    yield put(RegisterActions.registerFail(error))
+  }
+}
+
 function* RegisterSaga() {
   yield all([
     yield takeEvery(
@@ -69,6 +85,7 @@ function* RegisterSaga() {
     ),
     yield takeEvery(REGISTER_ACTIONS.FETCH_CAUSES_REQUEST, fetchCauses),
     yield takeEvery(REGISTER_ACTIONS.FETCH_SKILLS_REQUEST, fetchSkills),
+    yield takeEvery(REGISTER_ACTIONS.REGISTER_REQUEST, registerRequest),
   ])
 }
 

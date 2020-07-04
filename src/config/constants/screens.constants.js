@@ -21,6 +21,7 @@ const RegisterScreens = {
   REGISTER_CHOOSE_PROFILE_SCREEN: 'RegisterChooseProfileScreen',
   REGISTER_CONTINUE_SCREEN: 'RegisterContinueScreen',
   REGISTER_INFO_SCREEN: 'RegisterInfoScreen',
+  REGISTER_FINISH_SCREEN: 'RegisterFinishScreen',
 }
 
 const HomeScreens = {

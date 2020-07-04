@@ -64,10 +64,10 @@ export const LocationStep = () => {
     dispatch(RegisterActions.fetchCurrentLocationRequest())
   }
 
-  const handleChangeNeighborhood = (value) => {
+  const handleChangeDistrict = (value) => {
     dispatch(
       RegisterActions.updateUserData({
-        location: { ...location, neighborhood: value },
+        location: { ...location, district: value },
       }),
     )
   }
@@ -101,28 +101,28 @@ export const LocationStep = () => {
           type={ApButtonTypes.PRIMARY}
           containerStyle={Styles.buttonMargin}
           disabled={disabledButtons}
-          bold={location.state}
+          bold={location.stateName}
           style={Styles.button}
-          label={location.state || strings('register.state')}
+          label={location.stateName || strings('register.state')}
           onPress={() => {}}
         />
         <ApButton
           type={ApButtonTypes.PRIMARY}
           containerStyle={Styles.buttonMargin}
-          bold={location.city}
+          bold={location.cityName}
           style={Styles.button}
-          label={location.city || strings('register.city')}
-          disabled={!location.state || disabledButtons}
+          label={location.cityName || strings('register.city')}
+          disabled={!location.stateName || disabledButtons}
           onPress={() => {}}
         />
         <ApTextInput
           type={ApButtonTypes.SECONDARY}
           optional
-          onChangeText={handleChangeNeighborhood}
-          value={location.neighborhood}
+          onChangeText={handleChangeDistrict}
+          value={location.district}
           returnKeyType="done"
-          placeholder={strings('register.neighborhood')}
-          disabled={!location.city}
+          placeholder={strings('register.district')}
+          disabled={!location.cityName}
         />
       </View>
     </KeyboardAvoidingView>

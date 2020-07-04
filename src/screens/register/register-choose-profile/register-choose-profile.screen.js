@@ -4,6 +4,8 @@ import { ApButton, ApButtonTypes, BaseScreen } from 'app-components'
 import { useNavigation } from '@react-navigation/native'
 import { Screens, Role } from 'app-constants'
 import { strings } from 'app-locales'
+import { useDispatch } from 'react-redux'
+import { RegisterActions } from 'app-redux'
 import { BottomSheet } from './components'
 
 import Styles from './register-choose-profile.style'
@@ -14,13 +16,16 @@ export const RegisterChooseProfileScreen = () => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false)
 
   const navigation = useNavigation()
+  const dispatch = useDispatch()
 
   const toggleBottomSheetVisibility = () => {
     setBottomSheetVisible(!bottomSheetVisible)
   }
 
   const navigateToRegisterScreen = (role) => {
-    navigation.navigate(Screens.REGISTER_SCREEN, { role })
+    dispatch(RegisterActions.setBaseUserData({ role }))
+
+    navigation.navigate(Screens.REGISTER_SCREEN)
   }
 
   return (

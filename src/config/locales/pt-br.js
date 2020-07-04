@@ -23,7 +23,7 @@ const ptBr = {
     or_inform: 'Ou informe',
     state: 'Estado',
     city: 'Cidade',
-    neighborhood: 'Bairro',
+    district: 'Bairro',
     access_gallery_denied:
       'Desculpa, precisamos de acesso a galeria para isso funcionar!',
     choose_profile: 'Escolha o perfil mais\nadequado para você',
@@ -66,6 +66,15 @@ const ptBr = {
     finish_organization_register: 'Que bom ter a sua\norganização aqui!',
     to_finish_register:
       'Para finalizar o seu cadastro, precisamos\nde mais algumas informações.',
+    creating_volunteer_profile: 'Estamos criando seu perfil de\nvoluntário',
+    creating_organization_profile:
+      'Estamos criando o perfil da\nsua organização',
+    realy_want_leave: 'Deseja mesmo sair?',
+    wont_be_saved:
+      'Se você sair agora, seus dados não serão\nsalvos e você terá que fazer o processo de\ncadastro novamente.',
+    continue_register: 'Continuar cadastro',
+    want_leave: 'Quero sair',
+    error_try_again: 'Algo de errado aconteceu. Tente novamente.'
   },
   ap_text_input: {
     optional: 'Opcional',

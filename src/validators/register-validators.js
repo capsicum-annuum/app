@@ -47,7 +47,7 @@ const availabilityValidator = () => {
 const locationValidator = () => {
   const { location } = useSelector((state) => state.RegisterReducer)
 
-  const disabled = !location.state && !location.city
+  const disabled = !location.stateName && !location.cityName
 
   return {
     label: strings('register.finish'),

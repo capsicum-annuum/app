@@ -3,11 +3,12 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import {
+  LoginScreen,
   RegisterChooseProfileScreen,
   RegisterScreen,
   RegisterContinueScreen,
-  LoginScreen,
   RegisterInfoScreen,
+  RegisterFinishScreen,
 } from 'app-screens'
 import { Screens } from 'app-constants'
 
@@ -29,6 +30,10 @@ export const AuthStack = () => {
       <Stack.Screen
         name={Screens.REGISTER_INFO_SCREEN}
         component={RegisterInfoScreen}
+      />
+      <Stack.Screen
+        name={Screens.REGISTER_FINISH_SCREEN}
+        component={RegisterFinishScreen}
       />
     </Stack.Navigator>
   )

@@ -23,17 +23,20 @@ export class LocationService {
 
     const { latitude, longitude } = currentLocation.coords
 
-    return this.fetchGeocondig(latitude, longitude).then(({ state, city }) => {
-      return {
-        location: {
-          state,
-          city,
-          latitude,
-          longitude,
-          neighborhood: '',
-        },
-      }
-    })
+    return this.fetchGeocondig(latitude, longitude).then(
+      ({ stateName, cityName, federatedUnityAcronym }) => {
+        return {
+          location: {
+            stateName,
+            cityName,
+            latitude,
+            longitude,
+            district: '',
+            federatedUnityAcronym,
+          },
+        }
+      },
+    )
   }
 
   fetchGeocondig(latitude, longitude) {
@@ -46,15 +49,16 @@ export class LocationService {
       .then(({ results }) => {
         const { address_components: addressComponents } = results[0]
 
-        const city = addressComponents[2].long_name
-        const state = addressComponents[3].long_name
+        const cityName = addressComponents[3].long_name
+        const stateName = addressComponents[4].long_name
+        const federatedUnityAcronym = addressComponents[4].short_name
 
-        return { city, state }
+        return { cityName, stateName, federatedUnityAcronym }
       })
       .catch((error) => {
         alert(JSON.stringify(error))
 
-        return error
+        throw error
       })
   }
 
