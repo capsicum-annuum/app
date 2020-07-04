@@ -9,6 +9,7 @@ export const ApTextArea = (props) => {
       multiline
       containerStyle={Styles.container}
       inputStyle={Styles.input}
+      textAlignVertical="top"
       {...props}
     />
   )
