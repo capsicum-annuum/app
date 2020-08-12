@@ -15,6 +15,12 @@ const INITIAL_USER_DATA = {
   profilePhoto: null,
   backgroundPhoto: null,
   description: '',
+  contact: {
+    website: '',
+    facebook: '',
+    instagram: '',
+    twitter: '',
+  },
   causes: [],
   skills: [],
   availability: [],
