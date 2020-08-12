@@ -7,6 +7,14 @@ const photoValidator = () => {
   }
 }
 
+const descriptionValidator = () => {
+  return {
+    label: strings('register.continue'),
+    disabled: false,
+  }
+}
+
 export const RegisterOrganizationValidators = {
   photoValidator,
+  descriptionValidator
 }

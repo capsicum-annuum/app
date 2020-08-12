@@ -19,8 +19,8 @@ export const registerVoluntarySteps = [
     validator: RegisterVoluntaryValidators.photoValidator,
   },
   {
-    title: strings('register.description_title'),
-    description: strings('register.description_description'),
+    title: strings('register.description_title.voluntary'),
+    description: strings('register.description_description.voluntary'),
     selected: false,
     renderContent: () => <DescriptionStep />,
     validator: RegisterVoluntaryValidators.descriptionValidator,
