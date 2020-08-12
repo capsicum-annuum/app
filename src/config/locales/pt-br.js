@@ -43,9 +43,16 @@ const ptBr = {
     register: 'Cadastrar',
     continue: 'Continuar',
     finish: 'Finalizar',
-    photo_title: 'Escolha a foto de perfil',
-    photo_description:
-      'Sua foto ficará visível para todos os usuários e organizações',
+    photo_title: {
+      voluntary: 'Escolha a foto de perfil',
+      organization: 'Escolha a foto e a capa do perfil',
+    },
+    photo_description: {
+      voluntary:
+        'Sua foto ficará visível para todos os usuários e organizações',
+      organization:
+        'Seu perfil ficará visível para todos os usuários, escolha imagens que passem credibilidade',
+    },
     description_title: 'Fale um pouco sobre você',
     description_description:
       'Diga pontos importantes sobre você, assim as organizações podem te conhecer melhor',
@@ -74,7 +81,8 @@ const ptBr = {
       'Se você sair agora, seus dados não serão\nsalvos e você terá que fazer o processo de\ncadastro novamente.',
     continue_register: 'Continuar cadastro',
     want_leave: 'Quero sair',
-    error_try_again: 'Algo de errado aconteceu. Tente novamente.'
+    error_try_again: 'Algo de errado aconteceu. Tente novamente.',
+    select: 'Selecionar',
   },
   ap_text_input: {
     optional: 'Opcional',

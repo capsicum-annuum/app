@@ -12,7 +12,8 @@ const INITIAL_BASE_USER_DATA = {
 }
 
 const INITIAL_USER_DATA = {
-  photo: null,
+  profilePhoto: null,
+  backgroundPhoto: null,
   description: '',
   causes: [],
   skills: [],

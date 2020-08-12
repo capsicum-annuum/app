@@ -12,8 +12,8 @@ import { strings } from 'app-locales'
 
 export const registerVoluntarySteps = [
   {
-    title: strings('register.photo_title'),
-    description: strings('register.photo_description'),
+    title: strings('register.photo_title.voluntary'),
+    description: strings('register.photo_description.voluntary'),
     selected: true,
     renderContent: () => <PhotoStep />,
     validator: RegisterVoluntaryValidators.photoValidator,
