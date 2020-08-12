@@ -3,6 +3,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "clean": "rm -rf node_modules && rm -rf yarn.lock && yarn",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",

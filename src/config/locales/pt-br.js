@@ -74,7 +74,8 @@ const ptBr = {
       'Se você sair agora, seus dados não serão\nsalvos e você terá que fazer o processo de\ncadastro novamente.',
     continue_register: 'Continuar cadastro',
     want_leave: 'Quero sair',
-    error_try_again: 'Algo de errado aconteceu. Tente novamente.'
+    error_try_again: 'Algo de errado aconteceu. Tente novamente.',
+    confirm: 'Confirmar',
   },
   ap_text_input: {
     optional: 'Opcional',

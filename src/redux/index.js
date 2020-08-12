@@ -11,3 +11,8 @@ export { REGISTER_ACTIONS } from './register/register.constant'
 export { RegisterActions } from './register/register.action'
 export { RegisterReducer } from './register/register.reducer'
 export { RegisterSaga } from './register/register.saga'
+
+export { LOCATION_ACTIONS } from './location/location.constant'
+export { LocationActions } from './location/location.action'
+export { LocationReducer } from './location/location.reducer'
+export { LocationSaga } from './location/location.saga'

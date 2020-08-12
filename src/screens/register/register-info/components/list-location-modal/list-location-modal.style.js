@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
+  loaderContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
 })
 
 export default styles
