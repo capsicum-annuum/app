@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   View,
   ScrollView,
@@ -31,7 +31,7 @@ export const ListLocationModal = ({
     citiesLoader,
     statesLoader,
   } = useSelector((state) => state.LocationReducer)
-  const flatListRef = useRef(null)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -74,12 +74,6 @@ export const ListLocationModal = ({
       setSelectedState(item)
     }
   }
-
-  const getItemLayout = (data, index) => ({
-    length: 50,
-    offset: 50 * index,
-    index,
-  })
 
   const onConfirmSelectedState = () => {
     const { name, acronym, id } = selectedState
@@ -158,11 +152,8 @@ export const ListLocationModal = ({
         <Header />
         <ScrollView style={Styles.scrollView}>
           <FlatList
-            ref={flatListRef}
-            getItemLayout={getItemLayout}
             data={data}
             initialNumToRender={2}
-            refreshing={false}
             renderItem={({ item }) => <Item {...item} />}
             keyExtractor={(item) => item.id}
           />
