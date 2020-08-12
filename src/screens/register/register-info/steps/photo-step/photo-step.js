@@ -1,20 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { ApIcon } from 'app-components'
+import { Role } from 'app-constants'
 import * as ImagePicker from 'expo-image-picker'
 import { useToaster } from 'app-context'
 import { strings } from 'app-locales'
 import { useSelector, useDispatch } from 'react-redux'
 import { RegisterActions } from 'app-redux'
-import { UploadService } from 'app-services'
 import Constants from 'expo-constants'
 
 import Styles from './photo-step.style'
 
-const defaultUserPhoto = require('../../../../../assets/images/user.png')
+import defaultUserPhoto from '../../../../../assets/images/user.png'
+import defaultBackgroundPhoto from '../../../../../assets/images/organization-cover.png'
 
 export const PhotoStep = () => {
-  const { photo } = useSelector((state) => state.RegisterReducer)
+  const { profilePhoto, backgroundPhoto, role } = useSelector(
+    (state) => state.RegisterReducer,
+  )
+
+  const isOrganization = Role.ORGANIZATION === role
 
   const { queue } = useToaster()
   const dispatch = useDispatch()
@@ -32,36 +37,91 @@ export const PhotoStep = () => {
     requestCameraRollPermissions()
   }, [])
 
-  useEffect(() => {
-    const uploadService = new UploadService()
-
-    if (photo) {
-      uploadService.uploadImage(photo)
-    }
-  }, [photo])
-
-  const pickPhoto = async () => {
-    const photoResult = await ImagePicker.launchImageLibraryAsync({
+  const pickPhoto = async (aspect) => {
+    return ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      aspect,
     })
+  }
+
+  const pickBackgroundPhoto = async () => {
+    const aspect = [16, 10]
+
+    const photoResult = await pickPhoto(aspect)
 
     if (!photoResult.cancelled) {
-      dispatch(RegisterActions.updateUserData({ photo: photoResult }))
+      dispatch(RegisterActions.updateUserData({ backgroundPhoto: photoResult }))
     }
   }
 
-  const displayPhoto = photo ? { uri: photo.uri } : defaultUserPhoto
+  const pickProfilePhoto = async () => {
+    const aspect = [4, 3]
+
+    const photoResult = await pickPhoto(aspect)
+
+    if (!photoResult.cancelled) {
+      dispatch(RegisterActions.updateUserData({ profilePhoto: photoResult }))
+    }
+  }
+
+  const displayProfilePhoto = profilePhoto
+    ? { uri: profilePhoto.uri }
+    : defaultUserPhoto
+  const displayBackgroundPhoto = backgroundPhoto
+    ? { uri: backgroundPhoto.uri }
+    : defaultBackgroundPhoto
+
+  const SelectButton = ({ onPress, style }) => {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[Styles.buttonContainer, style]}
+      >
+        <ApIcon name="image" style={Styles.icon} />
+        <Text style={Styles.text}>{strings('register.select')}</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  const BackgroundPhoto = useCallback(() => {
+    return (
+      <View style={Styles.backgroundContainer}>
+        <Image source={displayBackgroundPhoto} style={Styles.background} />
+        <SelectButton
+          onPress={pickBackgroundPhoto}
+          style={Styles.backgroundButton}
+        />
+      </View>
+    )
+  }, [role])
+
+  const ProfilePhoto = () => {
+    const profileContainerStyle = isOrganization
+      ? Styles.organizationProfileContainer
+      : Styles.voluntaryProfileContainer
+
+    const profilePhotoStyle = isOrganization
+      ? Styles.organizationProfilePhoto
+      : Styles.voluntaryProfilePhoto
+
+    return (
+      <View style={profileContainerStyle}>
+        <Image source={displayProfilePhoto} style={profilePhotoStyle} />
+        <SelectButton onPress={pickProfilePhoto} style={Styles.profileButton} />
+      </View>
+    )
+  }
+
+  const containerStyle = isOrganization
+    ? Styles.organizationContainer
+    : Styles.voluntaryContainer
 
   return (
-    <View style={Styles.container}>
-      <Image source={displayPhoto} style={Styles.image} />
-      <TouchableOpacity onPress={pickPhoto} style={Styles.buttonContainer}>
-        <ApIcon name="image" style={Styles.icon} />
-        <Text style={Styles.text}>Selecionar</Text>
-      </TouchableOpacity>
+    <View style={containerStyle}>
+      {isOrganization && <BackgroundPhoto />}
+      <ProfilePhoto />
     </View>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { RegisterValidators } from 'app-validators'
+import { RegisterVoluntaryValidators } from 'app-validators'
 import {
   PhotoStep,
   DescriptionStep,
@@ -12,45 +12,45 @@ import { strings } from 'app-locales'
 
 export const registerVoluntarySteps = [
   {
-    title: strings('register.photo_title'),
-    description: strings('register.photo_description'),
+    title: strings('register.photo_title.voluntary'),
+    description: strings('register.photo_description.voluntary'),
     selected: true,
     renderContent: () => <PhotoStep />,
-    validator: RegisterValidators.photoValidator,
+    validator: RegisterVoluntaryValidators.photoValidator,
   },
   {
-    title: strings('register.description_title'),
-    description: strings('register.description_description'),
+    title: strings('register.description_title.voluntary'),
+    description: strings('register.description_description.voluntary'),
     selected: false,
     renderContent: () => <DescriptionStep />,
-    validator: RegisterValidators.descriptionValidator,
+    validator: RegisterVoluntaryValidators.descriptionValidator,
   },
   {
     title: strings('register.skills_title'),
     description: strings('register.skills_description'),
     selected: false,
     renderContent: () => <SkillsStep />,
-    validator: RegisterValidators.skillsValidator,
+    validator: RegisterVoluntaryValidators.skillsValidator,
   },
   {
     title: strings('register.causes_title'),
     description: strings('register.causes_description'),
     selected: false,
     renderContent: () => <CausesStep />,
-    validator: RegisterValidators.causesValidator,
+    validator: RegisterVoluntaryValidators.causesValidator,
   },
   {
     title: strings('register.availability_title'),
     description: strings('register.availability_description'),
     selected: false,
     renderContent: () => <AvailabilityStep />,
-    validator: RegisterValidators.availabilityValidator,
+    validator: RegisterVoluntaryValidators.availabilityValidator,
   },
   {
     title: strings('register.location_title'),
     description: strings('register.location_description'),
     selected: false,
     renderContent: () => <LocationStep />,
-    validator: RegisterValidators.locationValidator,
+    validator: RegisterVoluntaryValidators.locationValidator,
   },
 ]

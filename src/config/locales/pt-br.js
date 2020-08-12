@@ -9,7 +9,7 @@ const ptBr = {
     saturday: 'Sábado',
   },
   register: {
-    write_about_you: 'Escreva sobre você',
+    write_here: 'Escreva aqui',
     voluntary: 'Voluntário',
     organization: 'Organização',
     morning: 'manhã',
@@ -43,12 +43,29 @@ const ptBr = {
     register: 'Cadastrar',
     continue: 'Continuar',
     finish: 'Finalizar',
-    photo_title: 'Escolha a foto de perfil',
-    photo_description:
-      'Sua foto ficará visível para todos os usuários e organizações',
-    description_title: 'Fale um pouco sobre você',
-    description_description:
-      'Diga pontos importantes sobre você, assim as organizações podem te conhecer melhor',
+    photo_title: {
+      voluntary: 'Escolha a foto de perfil',
+      organization: 'Escolha a foto e a capa do perfil',
+    },
+    photo_description: {
+      voluntary:
+        'Sua foto ficará visível para todos os usuários e organizações',
+      organization:
+        'Seu perfil ficará visível para todos os usuários, escolha imagens que passem credibilidade',
+    },
+    description_title: {
+      voluntary: 'Fale um pouco sobre você',
+      organization: 'Fale sobre a sua organização',
+    },
+    description_description: {
+      voluntary:
+        'Diga pontos importantes sobre você, assim as organizações podem te conhecer melhor',
+      organization:
+        'Conte rapidamente sobre sua história e fatos mais relevantes ',
+    },
+    contact_title: 'Onde encontrá-los na internet?',
+    contact_description:
+      'Caso tenha site ou alguma rede social, preencha para que os voluntários os encontrem',
     skills_title: 'Selecione suas habilidades',
     skills_description:
       'Escolha os itens que te definem, isso aumenta as chances de você ser aceito em um evento',
@@ -76,6 +93,11 @@ const ptBr = {
     want_leave: 'Quero sair',
     error_try_again: 'Algo de errado aconteceu. Tente novamente.',
     confirm: 'Confirmar',
+    select: 'Selecionar',
+    website: 'Website',
+    facebook: 'Facebook',
+    instagram: 'Instagram',
+    twitter: 'Twitter',
   },
   ap_text_input: {
     optional: 'Opcional',

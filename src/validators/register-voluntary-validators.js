@@ -55,7 +55,7 @@ const locationValidator = () => {
   }
 }
 
-export const RegisterValidators = {
+export const RegisterVoluntaryValidators = {
   photoValidator,
   descriptionValidator,
   causesValidator,

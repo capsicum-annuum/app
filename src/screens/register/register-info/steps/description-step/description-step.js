@@ -23,7 +23,7 @@ export const DescriptionStep = () => {
         optional
         onChangeText={handleChange}
         value={description}
-        placeholder={strings('register.write_about_you')}
+        placeholder={strings('register.write_here')}
       />
     </View>
   )
