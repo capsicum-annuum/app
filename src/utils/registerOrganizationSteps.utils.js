@@ -35,6 +35,6 @@ export const registerOrganizationSteps = [
     description: strings('register.location_description.organization'),
     selected: true,
     renderContent: () => <OrganizationLocationStep />,
-    validator: RegisterOrganizationValidators.photoValidator,
+    validator: RegisterOrganizationValidators.locationValidator,
   },
 ]
