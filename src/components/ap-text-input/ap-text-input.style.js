@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   gray: {
-    color: colors.gray8,
+    color: colors.gray2,
   },
   optionalRight: {
     right: 19,
@@ -99,29 +99,29 @@ const secondary = StyleSheet.create({
   input: {
     ...defaultInput,
     color: colors.color8,
-    borderColor: colors.color14,
+    borderColor: colors.color9,
   },
   optionalText: {
     ...defaultOptional,
-    color: colors.gray6,
+    color: colors.gray1,
   },
   additionalIcon: {
     ...defaultAdditionalIcon,
-    color: colors.color14,
+    color: colors.color9,
   },
   disabledInput: {
     ...defaultInput,
-    color: colors.gray6,
+    color: colors.gray1,
     borderColor: 'rgba(66, 129, 137, 0.5)',
-    backgroundColor: 'rgba(166, 166, 166, 0.5)',
+    backgroundColor: 'rgba(229, 229, 229, 0.7)',
   },
   disabledOptionalText: {
     ...defaultOptional,
-    color: colors.gray6,
+    color: colors.gray1,
   },
   disabledAdditionalIcon: {
     ...defaultAdditionalIcon,
-    color: colors.color15,
+    color: colors.color11,
   },
   alert: {
     ...defaultAlert,

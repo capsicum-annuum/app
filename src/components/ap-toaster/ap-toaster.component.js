@@ -6,7 +6,7 @@ import {
   View,
   Text,
 } from 'react-native'
-
+import Constants from 'expo-constants'
 import { ApIcon } from 'app-components'
 
 import Styles from './ap-toaster.style'
@@ -17,7 +17,7 @@ const ApToasterPosition = {
 }
 
 const DEFAULT_DURATION = 1800
-const DEFAULT_OFFSET = 40
+const DEFAULT_OFFSET = Constants.statusBarHeight + 5
 const DEFAULT_POSITION = ApToasterPosition.TOP
 const DEFAULT_BACKGROUND_COLOR = '#E24F4F'
 const DEFAULT_APPEAR_CALLBACK = () => {}

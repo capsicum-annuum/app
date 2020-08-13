@@ -4,7 +4,8 @@ import { StringResolver } from 'app-utils'
 import { LocalStorageService } from 'app-services'
 
 export class HttpService {
-  constructor(apiGateway = '') {
+  constructor(apiGateway = '', url) {
+    this.url = url
     this.stringResolver = new StringResolver()
     this.localStorageService = new LocalStorageService()
 
@@ -30,7 +31,9 @@ export class HttpService {
     return this.localStorageService
       .getString(Authorization.ACCESS_TOKEN)
       .then((token) => {
-        headers.Authorization = token
+        if (token) {
+          headers.Authorization = token
+        }
 
         const config = {
           method,
@@ -44,7 +47,7 @@ export class HttpService {
   }
 
   resolveUrl(url, params) {
-    const apiUrl = Endpoints.getApiUrl()
+    const apiUrl = this.url || Endpoints.getApiUrl()
     const resolvedUrl = this.stringResolver.resolve(url, params)
 
     return `${apiUrl}${this.apiGateway}${resolvedUrl}`

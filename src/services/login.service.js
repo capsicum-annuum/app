@@ -1,24 +1,31 @@
-import { HttpService } from 'app-services'
+import {
+  HttpService,
+  LocalStorageService,
+  SecureStoreService,
+} from 'app-services'
+import { Authorization } from 'app-config/constants'
 
 export class LoginService {
   constructor() {
     this.httpService = new HttpService()
+    this.localStorageService = new LocalStorageService()
+    this.secureStoreService = new SecureStoreService()
+
+    this.login = this.login.bind(this)
   }
 
   login({ username, password }) {
-    const data = { username, password }
-
     return this.httpService
-      .post('/sessions', null, data)
-      .then((response) => {
-        console.log('response', response)
+      .post('/login', null, { username, password })
+      .then(({ token }) => {
+        this.localStorageService.setString(Authorization.ACCESS_TOKEN, token)
 
-        return response
+        return this.secureStoreService.setCredentials({ username, password })
       })
       .catch((error) => {
         console.log('LoginService login', error)
 
-        return error
+        throw error
       })
   }
 }

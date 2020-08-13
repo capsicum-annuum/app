@@ -20,8 +20,15 @@ const loginRequestFail = () => {
   }
 }
 
+const clear = () => {
+  return {
+    type: LOGIN_ACTIONS.CLEAR,
+  }
+}
+
 export const LoginActions = {
   loginRequest,
   loginRequestSuccess,
   loginRequestFail,
+  clear,
 }

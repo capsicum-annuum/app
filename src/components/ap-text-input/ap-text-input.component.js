@@ -13,6 +13,7 @@ export const ApTextInputTypes = {
 export const ApTextInput = (props) => {
   const {
     value,
+    inputRef,
     iconName,
     iconCallback = () => {},
     alert,
@@ -21,11 +22,13 @@ export const ApTextInput = (props) => {
     multiline,
     disabled,
     borderWidth = 1,
+    containerStyle,
+    inputStyle,
     type = ApTextInputTypes.PRIMARY,
   } = props
   const paddingRight = iconName ? 50 : 16
   const styles = Styles[type]
-  const inputStyle = disabled ? styles.disabledInput : styles.input
+  const defaultInputStyle = disabled ? styles.disabledInput : styles.input
   const optionalStyle = disabled ? styles.optionalText : styles.optionalText
   const additionalStyle = disabled
     ? styles.disabledAdditionalIcon
@@ -73,11 +76,17 @@ export const ApTextInput = (props) => {
   }, [alert, alertCallback])
 
   return (
-    <View style={Styles.styles.container}>
+    <View style={[Styles.styles.container, containerStyle]}>
       <TextInput
+        ref={inputRef}
         editable={!disabled}
-        style={[inputStyle, value && textStyle, { borderWidth, paddingRight }]}
-        placeholderTextColor={inputStyle.color}
+        style={[
+          defaultInputStyle,
+          inputStyle,
+          value && textStyle,
+          { borderWidth, paddingRight },
+        ]}
+        placeholderTextColor={defaultInputStyle.color}
         {...props}
       />
       {optional && !value && <Optional />}

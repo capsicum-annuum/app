@@ -2,18 +2,19 @@
   "compilerOptions": {
     "baseUrl": "./",
       "paths": {
-        "app-components": ["./src/components/*"],
-        "app-screens": ["./src/screens/*"],
-        "app-services": ["./src/services/*"],
-        "app-config": ["./src/config/*"],
-        "app-routes": ["./src/routes"],
-        "app-utils": ["./src/utils/*"],
-        "app-redux": ["./src/redux/*"],
-        "app-assets": ["./src/assets/*"],
-        "app-constants": ["./src/config/constants/*"],
-        "app-context": ["./src/context/*"],
-        "app-theme": ["./src/styles/*"],
-        "app-locales": ["./src/config/locales/*"]
+          "app-components": ["./src/components/*"],
+          "app-screens": ["./src/screens/*"],
+          "app-services": ["./src/services/*"],
+          "app-config": ["./src/config/*"],
+          "app-routes": ["./src/routes"],
+          "app-utils": ["./src/utils/*"],
+          "app-redux": ["./src/redux/*"],
+          "app-assets": ["./src/assets/*"],
+          "app-constants": ["./src/config/constants/*"],
+          "app-context": ["./src/context/*"],
+          "app-validators": ["./src/validators/*"],
+          "app-theme": ["./src/styles/*"],
+          "app-locales": ["./src/config/locales/*"]
       }
   }
 }

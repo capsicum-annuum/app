@@ -22,6 +22,7 @@ export const ApButton = ({
   loading,
   disabled,
   iconName,
+  buttonStyle,
   containerStyle,
   size = ApButtonSizes.LARGE,
   type = ApButtonTypes.DEFAULT,
@@ -40,14 +41,14 @@ export const ApButton = ({
         {label}
       </Text>
     )
-  }, [loading])
+  }, [loading, label])
 
   return (
     <View style={[Styles.styles.container, containerStyle]}>
       {iconName && <ApIcon name={iconName} style={[icon, iconColors]} />}
       <TouchableOpacity
         disabled={disabled || loading}
-        style={[button, buttonColors]}
+        style={[button, buttonColors, buttonStyle]}
         onPress={onPress}
       >
         <Content />

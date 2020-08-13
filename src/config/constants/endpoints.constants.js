@@ -1,8 +1,9 @@
 import { Environments } from './environments.constants'
 
 export class Endpoints {
-  static AUTHENTICATION = '/autenticacao'
-  static PROFILE = '/perfil'
+  static USER_VALIDATE = '/user/validate'
+  static SKILL = '/skill'
+  static CAUSE = '/cause'
 
   static getApiUrl() {
     const ENV = Environments.getCurrent()
@@ -10,9 +11,9 @@ export class Endpoints {
     return ENV.API_URL
   }
 
-  static getAuthorizationUrl() {
+  static getApiUploadUrl() {
     const ENV = Environments.getCurrent()
 
-    return ENV.API_AUTH_URL
+    return ENV.API_UPLOAD_URL
   }
 }

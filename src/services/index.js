@@ -1,4 +1,7 @@
 export { LocalStorageService } from './local-storage.service'
 export { HttpService } from './http.service'
 export { LoginService } from './login.service'
-
+export { LocationService } from './location.service'
+export { RegisterService } from './register.service'
+export { UploadService } from './upload.service'
+export { SecureStoreService } from './secure-store.service'
