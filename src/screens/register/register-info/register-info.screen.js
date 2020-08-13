@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { View } from 'react-native'
 import { ApButton, RegisterWizard } from 'app-components'
 import { Screens } from 'app-constants'

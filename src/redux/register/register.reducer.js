@@ -26,7 +26,9 @@ const INITIAL_USER_DATA = {
   availability: [],
   location: {
     stateName: '',
+    stateId: null,
     cityName: '',
+    cityId: null,
     district: '',
     neighborhood: '',
     federatedUnityAcronym: '',

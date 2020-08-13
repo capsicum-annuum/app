@@ -92,6 +92,7 @@ const ptBr = {
     continue_register: 'Continuar cadastro',
     want_leave: 'Quero sair',
     error_try_again: 'Algo de errado aconteceu. Tente novamente.',
+    confirm: 'Confirmar',
     select: 'Selecionar',
     website: 'Website',
     facebook: 'Facebook',

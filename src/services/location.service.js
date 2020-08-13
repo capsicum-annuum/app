@@ -3,11 +3,13 @@ import { strings } from 'app-locales'
 import * as Location from 'expo-location'
 
 const GOOGLE_API_KEY = 'AIzaSyBo2JN9PUKnbHGM_SmX0ddNPXU9-tqbqZQ'
-const BRAZILIAN_LOCALITIS_URL =
-  'https://brazilian-localities-api.herokuapp.com/'
 
 export class LocationService {
   constructor() {
+    this.httpService = new HttpService()
+
+    this.fetchStates = this.fetchStates.bind(this)
+    this.fetchCities = this.fetchCities.bind(this)
     this.fetchGeocondig = this.fetchGeocondig.bind(this)
     this.fetchCurrentLocation = this.fetchCurrentLocation.bind(this)
   }
@@ -63,21 +65,28 @@ export class LocationService {
   }
 
   fetchStates() {
-    const url = `${BRAZILIAN_LOCALITIS_URL}states`
-    const httpService = new HttpService('', url)
+    return this.httpService
+      .get('/locality/federated-unity')
+      .then(({ federatedUnities }) => {
+        return federatedUnities
+      })
+      .catch((error) => {
+        console.log('fetchStates error', error)
 
-    return httpService.get().then((response) => {
-      return response.states.docs
-    })
+        throw error
+      })
   }
 
-  fetchCities(stateId, page = 1, limit = 30) {
-    const url = `${BRAZILIAN_LOCALITIS_URL}cities?page=${page}&limit=${limit}&id=${stateId}`
+  fetchCities(id) {
+    return this.httpService
+      .get(`/locality/city?id=${id}`)
+      .then(({ cities }) => {
+        return cities
+      })
+      .catch((error) => {
+        console.log('fetchStates error', error)
 
-    const httpService = new HttpService('', url)
-
-    return httpService.get().then((response) => {
-      return response.states.docs
-    })
+        throw error
+      })
   }
 }
