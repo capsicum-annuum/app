@@ -98,6 +98,8 @@ const ptBr = {
     facebook: 'Facebook',
     instagram: 'Instagram',
     twitter: 'Twitter',
+    created_profile_success:
+      'Perfil criado. Agora você já pode disfrutar de tudo!',
   },
   ap_text_input: {
     optional: 'Opcional',

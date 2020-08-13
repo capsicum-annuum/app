@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  icon: {
+    fontSize: 48,
+    color: colors.color1,
+  },
 })
 
 export default styles
