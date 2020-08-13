@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
     width: windowWidth,
     backgroundColor: colors.color1,
   },
-  scrollView: {
-    paddingHorizontal: 30,
+  flatListContainer: {
+    flex: 1,
+    marginHorizontal: 30,
     marginBottom: 30,
   },
   headerContainer: {

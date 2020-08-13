@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { View, ScrollView } from 'react-native'
 import {
   ApButton,
@@ -6,23 +6,52 @@ import {
   ApTextInput,
   ApTextInputTypes,
 } from 'app-components'
+import { LocationType } from 'app-constants'
 import { strings } from 'app-locales'
+import { RegisterActions } from 'app-redux'
 import { useSelector, useDispatch } from 'react-redux'
+import { ListLocationModal } from '../../../components'
 
 import Styles from './organization-location-step.style'
 
 export const OrganizationLocationStep = () => {
-  const { location, currentLocationLoader, disabledButtons } = useSelector(
-    (state) => state.RegisterReducer,
-  )
+  const [modalConfig, setModalConfig] = useState({
+    isVisible: false,
+    type: '',
+  })
+
+  const { location } = useSelector((state) => state.RegisterReducer)
+
+  const dispatch = useDispatch()
 
   const streetRef = useRef(null)
   const numberRef = useRef(null)
   const complementRef = useRef(null)
 
+  const handleChange = (value, type) => {
+    dispatch(
+      RegisterActions.updateUserData({
+        location: { ...location, [type]: value },
+      }),
+    )
+  }
+
+  const onHideModal = () => {
+    setModalConfig({ isVisible: false, type: '' })
+  }
+
+  const onShowModal = (type) => {
+    setModalConfig({ isVisible: true, type })
+  }
+
   return (
     <ScrollView style={Styles.wrapper}>
       <View style={Styles.container}>
+        <ListLocationModal
+          isVisible={modalConfig.isVisible}
+          locationType={modalConfig.type}
+          closeCallback={onHideModal}
+        />
         <ApButton
           type={ApButtonTypes.PRIMARY}
           containerStyle={Styles.buttonMargin}
@@ -37,7 +66,7 @@ export const OrganizationLocationStep = () => {
           bold={location.cityName}
           style={Styles.button}
           label={location.cityName || strings('register.city')}
-          disabled={!location.stateName || disabledButtons}
+          disabled={!location.stateName}
           onPress={() => onShowModal(LocationType.CITY)}
         />
         <ApTextInput
@@ -46,14 +75,16 @@ export const OrganizationLocationStep = () => {
           value={location.district}
           placeholder={strings('register.district')}
           disabled={!location.cityName}
+          onChangeText={(value) => handleChange(value, 'district')}
           returnKeyType="next"
           onSubmitEditing={() => streetRef.current.focus()}
         />
         <ApTextInput
           inputRef={streetRef}
           type={ApTextInputTypes.SECONDARY}
-          value={location.district}
+          value={location.streetName}
           placeholder={strings('register.street')}
+          onChangeText={(value) => handleChange(value, 'streetName')}
           disabled={!location.cityName}
           returnKeyType="next"
           onSubmitEditing={() => numberRef.current.focus()}
@@ -61,8 +92,9 @@ export const OrganizationLocationStep = () => {
         <ApTextInput
           inputRef={numberRef}
           type={ApTextInputTypes.SECONDARY}
-          value={location.district}
+          value={location.addressNumber}
           placeholder={strings('register.number')}
+          onChangeText={(value) => handleChange(value, 'addressNumber')}
           disabled={!location.cityName}
           returnKeyType="next"
           onSubmitEditing={() => complementRef.current.focus()}
@@ -71,8 +103,9 @@ export const OrganizationLocationStep = () => {
           inputRef={complementRef}
           optional
           type={ApTextInputTypes.SECONDARY}
-          value={location.district}
+          value={location.complement}
           placeholder={strings('register.complement')}
+          onChangeText={(value) => handleChange(value, 'complement')}
           disabled={!location.cityName}
           returnKeyType="done"
         />
