@@ -48,7 +48,7 @@ export const registerVoluntarySteps = [
   },
   {
     title: strings('register.location_title'),
-    description: strings('register.location_description'),
+    description: strings('register.location_description.voluntary'),
     selected: false,
     renderContent: () => <VoluntaryLocationStep />,
     validator: RegisterVoluntaryValidators.locationValidator,
