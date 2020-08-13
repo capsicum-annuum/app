@@ -1,8 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { View } from 'react-native'
 import { ApButton, RegisterWizard } from 'app-components'
-import { Screens } from 'app-constants'
-import { registerVoluntarySteps, Hooks } from 'app-utils'
+import { Screens, Role } from 'app-constants'
+import {
+  registerVoluntarySteps,
+  registerOrganizationSteps,
+  Hooks,
+} from 'app-utils'
 import { useSelector, useDispatch } from 'react-redux'
 import { RegisterActions } from 'app-redux'
 import { useToaster } from 'app-context'
@@ -15,7 +19,10 @@ export const RegisterInfoScreen = ({ navigation }) => {
     (state) => state.RegisterReducer,
   )
 
-  const [currentStep, setCurrentStep] = useState(registerVoluntarySteps[0])
+  const registerSteps =
+    role === Role.VOLUNTARY ? registerVoluntarySteps : registerOrganizationSteps
+
+  const [currentStep, setCurrentStep] = useState(registerSteps[0])
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -37,13 +44,13 @@ export const RegisterInfoScreen = ({ navigation }) => {
   }
 
   const nextStep = () => {
-    if (currentStepIndex + 1 === registerVoluntarySteps.length) {
+    if (currentStepIndex + 1 === registerSteps.length) {
       navigation.navigate(Screens.REGISTER_FINISH_SCREEN)
     } else {
       const nextStepIndex = currentStepIndex + 1
 
       setCurrentStepIndex(nextStepIndex)
-      setCurrentStep(registerVoluntarySteps[nextStepIndex])
+      setCurrentStep(registerSteps[nextStepIndex])
     }
   }
 
@@ -52,7 +59,7 @@ export const RegisterInfoScreen = ({ navigation }) => {
       const previousStepIndex = currentStepIndex - 1
 
       setCurrentStepIndex(previousStepIndex)
-      setCurrentStep(registerVoluntarySteps[previousStepIndex])
+      setCurrentStep(registerSteps[previousStepIndex])
     } else {
       toggleModalVisible()
     }
@@ -76,7 +83,7 @@ export const RegisterInfoScreen = ({ navigation }) => {
     <>
       <View style={Styles.container}>
         <RegisterWizard
-          steps={registerVoluntarySteps}
+          steps={registerSteps}
           currentStep={currentStep}
         />
         <View style={Styles.content}>{renderContent()}</View>
