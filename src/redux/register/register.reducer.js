@@ -34,6 +34,9 @@ const INITIAL_USER_DATA = {
     federatedUnityAcronym: '',
     latitude: null,
     longitude: null,
+    streetName: '',
+    addressNumber: '',
+    complement: '',
   },
   disabledButtons: false,
 }

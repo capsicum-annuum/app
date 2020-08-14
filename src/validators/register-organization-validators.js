@@ -22,6 +22,24 @@ const contactValidator = () => {
   }
 }
 
+const locationValidator = () => {
+  const {
+    stateName,
+    cityName,
+    district,
+    streetname,
+    addressNumber,
+  } = useSelector((state) => state.RegisterReducer.location)
+
+  const disabled =
+    !stateName || !cityName || !district || !streetname || !addressNumber
+
+  return {
+    label: strings('register.continue'),
+    disabled,
+  }
+}
+
 const causesValidator = () => {
   const { causes } = useSelector((state) => state.RegisterReducer)
 
@@ -37,5 +55,6 @@ export const RegisterOrganizationValidators = {
   photoValidator,
   descriptionValidator,
   contactValidator,
+  locationValidator,
   causesValidator,
 }
