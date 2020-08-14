@@ -6,7 +6,7 @@ import {
   SkillsStep,
   CausesStep,
   AvailabilityStep,
-  LocationStep,
+  VoluntaryLocationStep,
 } from 'app-screens/register/register-info/steps'
 import { strings } from 'app-locales'
 
@@ -34,7 +34,7 @@ export const registerVoluntarySteps = [
   },
   {
     title: strings('register.causes_title'),
-    description: strings('register.causes_description'),
+    description: strings('register.causes_description.voluntary'),
     selected: false,
     renderContent: () => <CausesStep />,
     validator: RegisterVoluntaryValidators.causesValidator,
@@ -48,9 +48,9 @@ export const registerVoluntarySteps = [
   },
   {
     title: strings('register.location_title'),
-    description: strings('register.location_description'),
+    description: strings('register.location_description.voluntary'),
     selected: false,
-    renderContent: () => <LocationStep />,
+    renderContent: () => <VoluntaryLocationStep />,
     validator: RegisterVoluntaryValidators.locationValidator,
   },
 ]

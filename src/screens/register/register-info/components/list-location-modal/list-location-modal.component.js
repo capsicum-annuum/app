@@ -150,14 +150,14 @@ export const ListLocationModal = ({
     return (
       <>
         <Header />
-        <ScrollView style={Styles.scrollView}>
+        <View style={Styles.flatListContainer}>
           <FlatList
             data={data}
             initialNumToRender={2}
             renderItem={({ item }) => <Item {...item} />}
             keyExtractor={(item) => item.id}
           />
-        </ScrollView>
+        </View>
         <BottomSheet
           label={strings('register.confirm')}
           onPress={isCity ? onConfirmSelectedCity : onConfirmSelectedState}
