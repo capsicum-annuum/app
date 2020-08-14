@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
-import {
-  View,
-  Text,
-  KeyboardAvoidingView,
-} from 'react-native'
+import { View, Text, KeyboardAvoidingView } from 'react-native'
 import { ApButton, ApTextInput, ApButtonTypes } from 'app-components'
 import { LocationType } from 'app-constants'
 import { useSelector, useDispatch } from 'react-redux'
 import { RegisterActions } from 'app-redux'
 import { strings } from 'app-locales'
-import { ListLocationModal } from '../../components'
+import { ListLocationModal } from '../../../components'
 
-import Styles from './location-step.style'
+import Styles from './voluntary-location-step.style'
 
-export const LocationStep = () => {
+export const VoluntaryLocationStep = () => {
   const [modalConfig, setModalConfig] = useState({
     isVisible: false,
     type: '',

@@ -24,7 +24,10 @@ const ptBr = {
     state: 'Estado',
     city: 'Cidade',
     district: 'Bairro',
-    access_gallery_denied:
+    street: 'Rua',
+    number: 'Número',
+    complement: 'Complemento',
+  access_gallery_denied:
       'Desculpa, precisamos de acesso a galeria para isso funcionar!',
     choose_profile: 'Escolha o perfil mais\nadequado para você',
     which_profile: 'Não sabe qual perfil\nescolher?',
@@ -76,8 +79,12 @@ const ptBr = {
     availability_description:
       'Selecione sua disponibilidade para encontrarmos os eventos mais adequados para você',
     location_title: 'Informe sua localização',
-    location_description:
-      'Por último, informe seu endereço para que possamos encontrar ações perto de você',
+    location_description: {
+      voluntary:
+        'Por último, informe seu endereço para que possamos encontrar ações perto de você',
+      organization:
+        'Informe seu endereço para que possamos encontrar voluntários perto de você',
+    },
     lets_go: 'Vamos lá',
     finish_voluntary_register: 'Que bom ter você aqui!',
     finish_organization_register: 'Que bom ter a sua\norganização aqui!',

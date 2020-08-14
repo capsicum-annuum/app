@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { strings } from 'app-locales'
 
 const photoValidator = () => {
@@ -21,8 +22,27 @@ const contactValidator = () => {
   }
 }
 
+const locationValidator = () => {
+  const {
+    stateName,
+    cityName,
+    district,
+    streetname,
+    addressNumber,
+  } = useSelector((state) => state.RegisterReducer.location)
+
+  const disabled =
+    !stateName || !cityName || !district || !streetname || !addressNumber
+
+  return {
+    label: strings('register.continue'),
+    disabled,
+  }
+}
+
 export const RegisterOrganizationValidators = {
   photoValidator,
   descriptionValidator,
   contactValidator,
+  locationValidator,
 }
