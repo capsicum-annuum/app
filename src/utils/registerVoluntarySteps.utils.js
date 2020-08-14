@@ -34,7 +34,7 @@ export const registerVoluntarySteps = [
   },
   {
     title: strings('register.causes_title'),
-    description: strings('register.causes_description'),
+    description: strings('register.causes_description.voluntary'),
     selected: false,
     renderContent: () => <CausesStep />,
     validator: RegisterVoluntaryValidators.causesValidator,

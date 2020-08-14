@@ -40,9 +40,21 @@ const locationValidator = () => {
   }
 }
 
+const causesValidator = () => {
+  const { causes } = useSelector((state) => state.RegisterReducer)
+
+  const disabled = causes.length === 0
+
+  return {
+    label: strings('register.finish'),
+    disabled,
+  }
+}
+
 export const RegisterOrganizationValidators = {
   photoValidator,
   descriptionValidator,
   contactValidator,
   locationValidator,
+  causesValidator,
 }

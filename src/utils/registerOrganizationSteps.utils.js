@@ -4,6 +4,7 @@ import {
   PhotoStep,
   DescriptionStep,
   ContactStep,
+  CausesStep,
   OrganizationLocationStep,
 } from 'app-screens/register/register-info/steps'
 import { strings } from 'app-locales'
@@ -36,5 +37,12 @@ export const registerOrganizationSteps = [
     selected: true,
     renderContent: () => <OrganizationLocationStep />,
     validator: RegisterOrganizationValidators.locationValidator,
+  },
+  {
+    title: strings('register.causes_title'),
+    description: strings('register.causes_description.organization'),
+    selected: true,
+    renderContent: () => <CausesStep />,
+    validator: RegisterOrganizationValidators.causesValidator,
   },
 ]

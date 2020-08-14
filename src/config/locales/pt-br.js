@@ -73,8 +73,12 @@ const ptBr = {
     skills_description:
       'Escolha os itens que te definem, isso aumenta as chances de você ser aceito em um evento',
     causes_title: 'Quais causas você apoia',
-    causes_description:
-      'Isso nos ajudará a encontrar organizações que apoiam as mesmas causas que você',
+    causes_description: {
+      voluntary:
+        'Isso nos ajudará a encontrar organizações que apoiam as mesmas causas que você',
+      organization:
+        'Isso nos ajudará a encontrar voluntários que apoiam as mesmas causas que você',
+    },
     availability_title: 'Defina sua disponibilidade',
     availability_description:
       'Selecione sua disponibilidade para encontrarmos os eventos mais adequados para você',
